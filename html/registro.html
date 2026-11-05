@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Inventario ADSO</title>
+    <link href="../css/estilos.css" rel="stylesheet">
+</head>
+<body class="login-fondo">
+    <main class="login-card ancha">
+        <header class="login-encabezado">
+            <h1>Crear cuenta</h1>
+            <p>Completa tus datos para registrarte</p>
+        </header>
+
+        <form class="login-form" action="dashboard.html" method="get">
+            <div class="campo">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+            </div>
+
+            <div class="campo">
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" placeholder="sena@correo.com" required>
+            </div>
+
+            <div class="campo">
+                <label for="clave">Contraseña</label>
+                <input type="password" id="clave" name="clave" placeholder="Mínimo 6 caracteres" minlength="6" required>
+            </div>
+
+            <div class="campo">
+                <label for="confirmar-clave">Confirmar contraseña</label>
+                <input type="password" id="confirmar-clave" name="confirmar-clave" placeholder="Repite tu contraseña" minlength="6" required>
+            </div>
+
+            <button type="submit">Registrarme</button>
+        </form>
+
+        <p class="login-pie">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+    </main>
+</body>
+</html>
