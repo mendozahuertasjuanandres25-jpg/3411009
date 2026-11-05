@@ -1,5 +1,4 @@
-/* hoja de estilos de software de inventarios */
-
+/* hoja de estilos de software de inventarios *
 /* variables de marca es decir las generales */
 :root {
   /* es la raiz del documento las variables declaradas aqui sirven para toda la pagina */
@@ -14,6 +13,7 @@ body {
   /* afecta a todo el cuerpo de la pagina */
   margin: 0; /* quita la margen que el navegador coloca por defecto */
   font-family: "Segoe UI", Roboto, Arial, sans-serif; /* tipos de letra si no existe pasa a la siguiente */
+  background: linear-gradient(135deg, var(--sena-verde), var(--sena-azul));
 }
 
 /* texto verde sena */
