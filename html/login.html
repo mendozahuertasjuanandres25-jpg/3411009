@@ -6,45 +6,45 @@
     <title>Iniciar sesión - Inventario ADSO</title>
     <link href="../css/estilos.css" rel="stylesheet">
 </head>
-<body class="login-fondo">
-    <main class="login-card">
-        <header class="login-encabezado">
-            <div class="login-logo" aria-label="Logo SENA">
-                <svg viewBox="0 0 120 120" role="img" aria-hidden="true">
+<body style="margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0e2a38 0%, #00324d 35%, #0f4d41 100%); font-family: Arial, sans-serif; color: #12324a;">
+    <main style="width: min(420px, 90vw); background: rgba(255, 255, 255, 0.96); border-radius: 20px; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2); padding: 2rem 1.8rem; border: 1px solid rgba(57, 169, 0, 0.2);">
+        <header style="text-align: center; margin-bottom: 1.5rem;">
+            <div aria-label="Logo SENA" style="width: 120px; height: 120px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                <svg viewBox="0 0 120 120" role="img" aria-hidden="true" style="width: 100%; height: auto; display:block;">
                     <circle cx="60" cy="60" r="56" fill="#00324d"></circle>
                     <circle cx="60" cy="60" r="42" fill="#39a900"></circle>
                     <path d="M32 78 L48 42 H58 L44 78 H32 Z M52 78 L68 42 H78 L62 78 H52 Z M70 78 L76 78 L57 42 H47 L70 78 Z" fill="#ffffff"></path>
                     <path d="M44 36 H76 L73 46 H47 L44 36 Z" fill="#ffffff" opacity="0.9"></path>
                 </svg>
             </div>
-            <h1>Inventario Sena</h1>
-            <p>Ingresa tus credenciales para continuar</p>
+            <h1 style="margin: 0 0 0.4rem; font-size: 2rem; color: #00324d;">Inventario Sena</h1>
+            <p style="margin: 0; color: #4a5b66; font-size: 0.98rem;">Ingresa tus credenciales para continuar</p>
         </header>
 
-        <form class="login-form" action="dashboard.html" method="get">
-            <div class="campo">
-                <label for="correo">Correo electrónico</label>
-                <input type="email" id="correo" name="correo" placeholder="sena@correo.com" required>
+        <form action="dashboard.html" method="get" style="display: flex; flex-direction: column; gap: 1.1rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+                <label for="correo" style="font-weight: 600; color: #12324a;">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" placeholder="sena@correo.com" required style="width: 100%; box-sizing: border-box; padding: 0.85rem 0.9rem; border: 1px solid #bfd0db; border-radius: 10px; font-size: 1rem; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; background: #f8fbfd;">
             </div>
 
-            <div class="campo">
-                <label for="clave">Contraseña</label>
-                <input type="password" id="clave" name="clave" placeholder="Mínimo 6 caracteres" minlength="6" required>
+            <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+                <label for="clave" style="font-weight: 600; color: #12324a;">Contraseña</label>
+                <input type="password" id="clave" name="clave" placeholder="Mínimo 6 caracteres" minlength="6" required style="width: 100%; box-sizing: border-box; padding: 0.85rem 0.9rem; border: 1px solid #bfd0db; border-radius: 10px; font-size: 1rem; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; background: #f8fbfd;">
             </div>
 
-            <div class="extras">
-                <div>
-                    <input type="checkbox" id="recordar" name="recordar">
-                    <label for="recordar">Recordarme</label>
-                </div>
+            <div style="display: flex; align-items: center; justify-content: flex-start; font-size: 0.92rem; color: #3a4d59;">
+                <label for="recordar" style="display: inline-flex; align-items: center; gap: 0.55rem; cursor: pointer;">
+                    <input type="checkbox" id="recordar" name="recordar" style="width: 1rem; height: 1rem; accent-color: #39a900;">
+                    Recordarme
+                </label>
             </div>
 
-            <button type="submit">Ingresar</button>
+            <button type="submit" style="border: none; border-radius: 10px; background: linear-gradient(135deg, #39a900 0%, #2c8b00 100%); color: #fff; font-weight: 700; font-size: 1rem; padding: 0.95rem 1rem; cursor: pointer; box-shadow: 0 10px 20px rgba(57, 169, 0, 0.25); transition: transform 0.2s ease, box-shadow 0.2s ease;">Ingresar</button>
         </form>
 
-        <p class="login-pie">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+        <p style="margin: 1.25rem 0 0; text-align: center; color: #4a5b66; font-size: 0.96rem;">¿No tienes cuenta? <a href="registro.html" style="color: #00324d; font-weight: 700; text-decoration: none;">Regístrate</a></p>
 
-        <footer class="login-pie">2026 SENA - ADSO Mixtape</footer>
+        <footer style="margin-top: 1.2rem; text-align: center; font-size: 0.82rem; color: #667682;">2026 SENA - ADSO Mixtape</footer>
     </main>
 </body>
 </html>
