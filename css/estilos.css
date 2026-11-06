@@ -79,8 +79,8 @@ body {
   padding: 1rem;
   /* el padding no suma al alto */
   box-sizing: border-box;
-  /* fondo blanco */
-  background: #fff;
+  /* degradado verde y azul visible detrás de la tarjeta */
+  background: linear-gradient(135deg, var(--sena-verde), var(--sena-azul));
 }
 
 /* tarjeta blanca */
