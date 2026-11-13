@@ -2,27 +2,31 @@ const menu = document.getElementById("menuLateral");
 const toggleButton = document.querySelector("[data-menu-toggle]");
 const backdrop = document.querySelector(".menu-fondo");
 const closeButtons = document.querySelectorAll("[data-menu-close]");
+const desktopViewport = window.matchMedia("(min-width: 768px)");
 
 if (!(menu instanceof HTMLElement) || !(toggleButton instanceof HTMLButtonElement) || !(backdrop instanceof HTMLButtonElement)) {
   throw new Error("No se encontraron los elementos necesarios para el menú.");
 }
 
-const setMenuOpen = (open) => {
-  menu.classList.toggle("abierto", open);
-  backdrop.classList.toggle("visible", open);
-  document.body.classList.toggle("menu-abierto", open);
-  menu.setAttribute("aria-hidden", String(!open));
-  backdrop.setAttribute("aria-hidden", String(!open));
-  toggleButton.setAttribute("aria-expanded", String(open));
-  toggleButton.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
-  menu.inert = !open;
+const setMenuOpen = (open, restoreFocus = true) => {
+  const menuIsOpen = desktopViewport.matches || open;
+  const mobileMenuIsOpen = !desktopViewport.matches && menuIsOpen;
 
-  if (open) {
+  menu.classList.toggle("abierto", menuIsOpen);
+  backdrop.classList.toggle("visible", mobileMenuIsOpen);
+  document.body.classList.toggle("menu-abierto", mobileMenuIsOpen);
+  menu.setAttribute("aria-hidden", String(!menuIsOpen));
+  backdrop.setAttribute("aria-hidden", String(!mobileMenuIsOpen));
+  toggleButton.setAttribute("aria-expanded", String(mobileMenuIsOpen));
+  toggleButton.setAttribute("aria-label", mobileMenuIsOpen ? "Cerrar menú" : "Abrir menú");
+  menu.inert = !menuIsOpen;
+
+  if (open && mobileMenuIsOpen) {
     const firstLink = menu.querySelector(".menu-enlace");
     if (firstLink instanceof HTMLElement) {
       firstLink.focus();
     }
-  } else {
+  } else if (!menuIsOpen && restoreFocus) {
     toggleButton.focus();
   }
 };
@@ -40,7 +44,10 @@ menu.querySelectorAll("a").forEach((link) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && toggleButton.getAttribute("aria-expanded") === "true") {
+  if (!desktopViewport.matches && event.key === "Escape" && toggleButton.getAttribute("aria-expanded") === "true") {
     setMenuOpen(false);
   }
 });
+
+desktopViewport.addEventListener("change", () => setMenuOpen(false, false));
+setMenuOpen(false, false);

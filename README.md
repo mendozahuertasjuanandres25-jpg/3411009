@@ -10,7 +10,7 @@ Plantilla web para la gestión de inventario, desarrollada como proyecto formati
 
 - Pantalla de inicio de sesión.
 - Formulario de registro.
-- Panel principal con un menú hamburguesa adaptable que abre y se cierra con clic, Escape o al elegir una sección.
+- Panel principal con menú lateral fijo en escritorio y menú hamburguesa en móviles; este se cierra con clic fuera, Escape o al elegir una sección.
 - Estilos propios con una paleta inspirada en los colores del SENA.
 
 ### Módulos previstos
