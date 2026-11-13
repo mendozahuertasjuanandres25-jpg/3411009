@@ -121,18 +121,13 @@
   color: #87d65c;
 }
 
-.marca-icono {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 14px;
-  color: #fff;
-  background: linear-gradient(145deg, #58b332, #278320);
-  box-shadow: 0 7px 18px rgba(57, 169, 0, 0.24);
-  font-size: 1.2rem;
-  font-weight: 800;
+.marca-logo {
+  width: 48px;
+  height: 48px;
+  padding: 3px;
+  border-radius: 12px;
+  background: #fff;
+  object-fit: contain;
 }
 
 .boton-cerrar {
