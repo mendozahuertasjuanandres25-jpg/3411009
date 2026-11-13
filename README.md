@@ -10,6 +10,7 @@ Plantilla web para la gestión de inventario, desarrollada como proyecto formati
 
 - Pantalla de inicio de sesión.
 - Formulario de registro.
+- Panel principal con un menú hamburguesa adaptable que abre y se cierra con clic, Escape o al elegir una sección.
 - Estilos propios con una paleta inspirada en los colores del SENA.
 
 ### Módulos previstos
@@ -25,6 +26,7 @@ Las operaciones CRUD de estos módulos son parte del alcance previsto; aún no e
 
 - **HTML5** para la estructura de las páginas.
 - **CSS3** para los estilos y la identidad visual.
+- **JavaScript** para abrir y cerrar el menú del panel principal.
 - **Bootstrap 5** para los componentes y el diseño adaptable de la pantalla de inicio de sesión.
 
 ## Requisitos
@@ -38,13 +40,15 @@ Solo necesitas un navegador web moderno. El proyecto no requiere instalación de
 3. Abre `html/login.html` en tu navegador.
 
 También puedes abrir `html/registro.html` directamente para revisar el formulario de registro.
+Abre `html/dashboard.html` para probar el menú hamburguesa del panel.
 
 ## Estructura del proyecto
 
 ```text
 3411009/
 ├── css/
-│   └── estilos.css
+│   ├── estilos.css
+│   └── menu.css
 ├── html/
 │   ├── categorias.html
 │   ├── dashboard.html
@@ -53,18 +57,20 @@ También puedes abrir `html/registro.html` directamente para revisar el formular
 │   ├── registro.html
 │   ├── subcategorias.html
 │   └── usuarios.html
+├── js/
+│   └── menu.js
 ├── img/
 │   └── images.png
 └── README.md
 ```
 
-> Los archivos de `dashboard`, `productos`, `categorias`, `subcategorias` y `usuarios` están creados como estructura inicial, pero actualmente están vacíos.
+> Los archivos de `productos`, `categorias`, `subcategorias` y `usuarios` están creados como estructura inicial, pero actualmente están vacíos.
 
 ## Alcance y limitaciones
 
 - Es una maqueta de interfaz; no cuenta con servidor, base de datos ni almacenamiento de información.
 - El inicio de sesión y el registro no autentican ni crean cuentas reales.
-- Los formularios no realizan operaciones persistentes. El destino del formulario de acceso es una pantalla de panel que todavía no está implementada.
+- Los formularios no realizan operaciones persistentes. El acceso lleva a un panel de demostración; sus módulos todavía no están implementados.
 
 ## Próximos pasos
 
