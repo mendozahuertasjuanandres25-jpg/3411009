@@ -25,7 +25,7 @@ Las operaciones CRUD de estos módulos son parte del alcance previsto; aún no e
 
 - **HTML5** para la estructura de las páginas.
 - **CSS3** para los estilos y la identidad visual.
-- Los estilos incluyen algunas variables compatibles con Bootstrap, pero el proyecto todavía no carga la biblioteca de Bootstrap.
+- **Bootstrap 5** para los componentes y el diseño adaptable de la pantalla de inicio de sesión.
 
 ## Requisitos
 
