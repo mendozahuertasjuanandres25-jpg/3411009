@@ -20,13 +20,30 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
             </button>
         </div>
-        <nav class="menu-enlaces">
-        </nav>
+
+        <div class="menu-seccion">
+            <p class="menu-etiqueta">Navegación</p>
+            <nav class="menu-enlaces" aria-label="Navegación principal">
+                <a class="menu-enlace activo" href="dashboard.html" aria-current="page"><span aria-hidden="true">⌂</span> <span>Panel principal</span></a>
+                <a class="menu-enlace" href="inventario.html"><span aria-hidden="true">▣</span> <span>Inventario</span></a>
+                <a class="menu-enlace" href="movimientos.html"><span aria-hidden="true">↔</span> <span>Movimientos</span></a>
+                <a class="menu-enlace" href="reportes.html"><span aria-hidden="true">▤</span> <span>Reportes</span></a>
+            </nav>
+        </div>
+
+        <div class="menu-pie">
+            <p>Última actualización</p>
+            <a class="menu-enlace menu-salir" href="login.html"><span aria-hidden="true">↩</span> <span>Cerrar sesión</span></a>
+        </div>
     </aside>
 
     <button class="boton-menu" type="button" data-menu-toggle aria-controls="menuLateral" aria-expanded="false" aria-label="Abrir menú">
         <span></span><span></span><span></span>
     </button>
+                </li>
+            </ul>
+        </section>
+    </main>
 
     <script src="../js/menu.js" defer></script>
 </body>
