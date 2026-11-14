@@ -24,9 +24,13 @@
         <div class="menu-seccion">
             <p class="menu-etiqueta">Navegación</p>
             <nav class="menu-enlaces" aria-label="Navegación principal">
+                <!-- La clase menu-enlace aplica a todos los vínculos el formato, el espaciado y los estados visuales definidos para la navegación lateral. La clase activo se añade únicamente a la opción correspondiente a la página que se está mostrando; junto con aria-current="page", permite identificarla visualmente y comunicarla a las tecnologías de asistencia. -->
                 <a class="menu-enlace activo" href="dashboard.html" aria-current="page"><span aria-hidden="true">⌂</span> <span>Panel principal</span></a>
+                <!-- La clase menu-enlace mantiene este acceso con la apariencia y el comportamiento comunes del menú. El destino inventario.html abre la sección donde se consultan y administran los elementos registrados; no se usa la clase activo porque esta página no es la vista actual. -->
                 <a class="menu-enlace" href="inventario.html"><span aria-hidden="true">▣</span> <span>Inventario</span></a>
+                <!-- La clase menu-enlace conserva la presentación uniforme de esta opción dentro de la navegación. El vínculo conduce a movimientos.html, donde se revisan las entradas y salidas de elementos, y permanece sin la clase activo mientras no se visite esa sección. -->
                 <a class="menu-enlace" href="movimientos.html"><span aria-hidden="true">↔</span> <span>Movimientos</span></a>
+                <!-- La clase menu-enlace aplica los estilos compartidos con las demás opciones del menú. El destino reportes.html permite acceder a los informes del inventario; esta opción solo debería recibir la clase activo cuando dicha página sea la vista abierta. -->
                 <a class="menu-enlace" href="reportes.html"><span aria-hidden="true">▤</span> <span>Reportes</span></a>
             </nav>
         </div>
