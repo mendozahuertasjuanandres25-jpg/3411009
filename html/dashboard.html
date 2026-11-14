@@ -36,7 +36,20 @@
         </div>
 
         <div class="menu-pie">
-            <p>Última actualización</p>
+            <p>Última vista</p>
+            <!--
+                Este acceso representa la salida segura del usuario desde el panel principal.
+                Al hacer clic, la aplicación debe devolver al visitante a la pantalla de login
+                y finalizar de forma apropiada la sesión activa para evitar que se mantenga un
+                estado autenticado en un navegador compartido o sin supervisión. Aunque este
+                enlace comparte la apariencia general de los demás elementos del menú lateral,
+                la clase menu-salir ayuda a distinguirlo visualmente como una acción de cierre
+                de sesión. El texto visible "Cerrar sesión" es claro y específico, además de ser
+                compatible con lectores de pantalla y otras tecnologías de asistencia que
+                interpretan el contenido de la interfaz. Este comentario documenta la intención
+                funcional del elemento para futuras modificaciones en la navegación, manteniendo
+                el contexto de seguridad y accesibilidad del proyecto.
+            -->
             <a class="menu-enlace menu-salir" href="login.html"><span aria-hidden="true">↩</span> <span>Cerrar sesión</span></a>
         </div>
     </aside>
