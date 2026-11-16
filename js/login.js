@@ -35,6 +35,9 @@ recoveryButton.addEventListener("click", () => {
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  showPendingMessage("El acceso seguro aún no está conectado a un servidor. Tus credenciales no se enviaron.");
+
+  if (loginForm.reportValidity()) {
+    window.location.assign("dashboard.html");
+  }
 });
 loginSubmit.disabled = false;
