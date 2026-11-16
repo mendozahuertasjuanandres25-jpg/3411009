@@ -1,0 +1,284 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --registro-verde: #39a900;
+  --registro-verde-oscuro: #278200;
+  --registro-azul: #07324a;
+  --registro-tinta: #132d32;
+  --registro-secundario: #64777b;
+  --registro-borde: #dce5e4;
+  --registro-foco: rgba(57, 169, 0, 0.16);
+}
+
+.registro-pagina,
+.registro-pagina * {
+  box-sizing: border-box;
+}
+
+.registro-pagina {
+  display: grid;
+  min-width: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  place-items: center;
+  margin: 0;
+  padding: max(1.5rem, env(safe-area-inset-top)) 1.25rem max(1.5rem, env(safe-area-inset-bottom));
+  overflow-x: hidden;
+  color: var(--registro-tinta);
+  background:
+    radial-gradient(ellipse at 12% 18%, rgba(57, 169, 0, 0.2), transparent 34%),
+    radial-gradient(ellipse at 88% 84%, rgba(20, 86, 117, 0.32), transparent 38%),
+    linear-gradient(135deg, #061812 0%, #082b2b 48%, #071727 100%);
+}
+
+.registro-card {
+  width: min(100%, 680px);
+  padding: clamp(2rem, 5vw, 3rem);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 28px 80px rgba(0, 10, 15, 0.3), 0 2px 8px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(18px);
+  animation: registro-aparecer 0.55s cubic-bezier(0.2, 0.7, 0.25, 1) both;
+}
+
+.registro-encabezado {
+  margin-bottom: 1.8rem;
+  text-align: center;
+}
+
+.registro-logo {
+  display: grid;
+  width: 82px;
+  height: 82px;
+  place-items: center;
+  margin: 0 auto 0.85rem;
+  border: 1px solid rgba(57, 169, 0, 0.12);
+  border-radius: 23px;
+  background: #f0f8ec;
+  box-shadow: 0 8px 20px rgba(29, 86, 35, 0.08);
+}
+
+.registro-logo img {
+  display: block;
+  width: 66px;
+  height: 66px;
+  object-fit: contain;
+}
+
+.registro-marca {
+  margin: 0;
+  color: var(--registro-azul);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.registro-marca strong {
+  color: var(--registro-verde-oscuro);
+}
+
+.registro-etiqueta {
+  margin: 1.15rem 0 0.45rem;
+  color: var(--registro-verde-oscuro);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.registro-encabezado h1 {
+  margin: 0;
+  color: var(--registro-tinta);
+  font-size: clamp(1.7rem, 4vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+}
+
+.registro-descripcion {
+  margin: 0.65rem 0 0;
+  color: var(--registro-secundario);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.registro-formulario {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.15rem 1rem;
+}
+
+.registro-campo {
+  min-width: 0;
+}
+
+.registro-campo label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #233d40;
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+
+.registro-control {
+  position: relative;
+}
+
+.registro-control input {
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  padding: 0.8rem 0.85rem 0.8rem 2.85rem;
+  border: 1px solid var(--registro-borde);
+  border-radius: 12px;
+  outline: none;
+  color: var(--registro-tinta);
+  background: rgba(255, 255, 255, 0.86);
+  font: inherit;
+  font-size: 0.92rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.registro-control input::placeholder {
+  color: #98a6a7;
+  opacity: 1;
+}
+
+.registro-control input:hover {
+  border-color: #b7c9c4;
+}
+
+.registro-control input:focus {
+  border-color: var(--registro-verde);
+  background: #fff;
+  box-shadow: 0 0 0 4px var(--registro-foco);
+}
+
+.registro-icono {
+  position: absolute;
+  top: 50%;
+  left: 0.9rem;
+  width: 19px;
+  height: 19px;
+  transform: translateY(-50%);
+  fill: none;
+  stroke: #859896;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+  pointer-events: none;
+  transition: stroke 0.2s ease;
+}
+
+.registro-control:focus-within .registro-icono {
+  stroke: var(--registro-verde-oscuro);
+}
+
+.registro-error {
+  margin: 0.4rem 0 0;
+  color: #b42318;
+  font-size: 0.78rem;
+}
+
+.registro-error[hidden] {
+  display: none;
+}
+
+.registro-boton {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.2rem;
+  padding: 0.85rem 1.2rem;
+  border: 0;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(110deg, #39a900 0%, #2d8e00 100%);
+  box-shadow: 0 10px 22px rgba(57, 169, 0, 0.2);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, filter 0.2s ease, transform 0.2s ease;
+}
+
+.registro-boton:hover {
+  filter: brightness(1.04);
+  box-shadow: 0 13px 26px rgba(57, 169, 0, 0.27);
+  transform: translateY(-1px);
+}
+
+.registro-boton:active {
+  transform: translateY(0);
+}
+
+.registro-boton:focus-visible,
+.registro-pie a:focus-visible {
+  outline: 3px solid rgba(57, 169, 0, 0.48);
+  outline-offset: 3px;
+}
+
+.registro-pie {
+  margin: 1.45rem 0 0;
+  color: var(--registro-secundario);
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.registro-pie a {
+  border-radius: 3px;
+  color: var(--registro-verde-oscuro);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.registro-pie a:hover {
+  color: var(--registro-azul);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@keyframes registro-aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .registro-pagina {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .registro-card {
+    padding: 1.8rem 1.25rem;
+    border-radius: 22px;
+  }
+
+  .registro-formulario {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .registro-pagina *,
+  .registro-pagina *::before,
+  .registro-pagina *::after {
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
