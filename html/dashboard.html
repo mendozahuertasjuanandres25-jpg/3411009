@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel principal - Inventario ADSO</title>
-    <link href="../css/estilos.css" rel="stylesheet">
+    <meta name="theme-color" content="#f3f6f7">
+    <title>Panel principal - Inventario SENA</title>
     <link href="../css/menu.css" rel="stylesheet">
+    <link href="../css/dashboard.css" rel="stylesheet">
 </head>
 <body class="dashboard-page">
     <button class="menu-fondo" type="button" data-menu-close aria-label="Cerrar menú" aria-hidden="true" tabindex="-1"></button>
 
     <aside class="menu-lateral" id="menuLateral" aria-label="Menú principal" aria-hidden="true" inert>
         <div class="menu-cabecera">
-            <a class="marca" href="dashboard.html" aria-label="Inventario SENA, panel principal">
+            <a class="marca" href="./dashboard.html" aria-label="Inventario SENA, panel principal">
                 <img class="marca-logo" src="../img/images.png" alt="Logo del SENA" width="48" height="48">
                 <span>Inventario <strong>SENA</strong></span>
             </a>
@@ -24,46 +25,134 @@
         <div class="menu-seccion">
             <p class="menu-etiqueta">Navegación</p>
             <nav class="menu-enlaces" aria-label="Navegación principal">
-                <!-- La clase menu-enlace aplica a todos los vínculos el formato, el espaciado y los estados visuales definidos para la navegación lateral. La clase activo se añade únicamente a la opción correspondiente a la página que se está mostrando; junto con aria-current="page", permite identificarla visualmente y comunicarla a las tecnologías de asistencia. -->
-                <a class="menu-enlace activo" href="./dashboard.html" aria-current="page"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-6h-4v6H4a1 1 0 0 1-1-1z"></path></svg></span> <span>Panel principal</span></a>
-                <!-- La clase menu-enlace mantiene este acceso con la apariencia y el comportamiento comunes del menú. El destino inventario.html abre la sección donde se consultan y administran los elementos registrados; no se usa la clase activo porque esta página no es la vista actual. -->
-                <a class="menu-enlace" href="../html/productos.html"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></svg></span> <span>producto</span></a>
-                <!-- La clase menu-enlace conserva la presentación uniforme de esta opción dentro de la navegación. El vínculo conduce a movimientos.html, donde se revisan las entradas y salidas de elementos, y permanece sin la clase activo mientras no se visite esa sección. -->
-                <a class="menu-enlace" href="../html/categorias.html"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4H10l2 2h7.5A1.5 1.5 0 0 1 21 7.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"></path><path d="M3 9h18"></path></svg></span> <span>categorias</span></a>
-                <!-- La clase menu-enlace aplica los estilos compartidos con las demás opciones del menú. El destino reportes.html permite acceder a los informes del inventario; esta opción solo debería recibir la clase activo cuando dicha página sea la vista abierta. -->
-                <a class="menu-enlace" href="../html/subcategorias.html"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></svg></span> <span>subcategorias</span></a>
-                 <!-- La clase menu-enlace aplica los estilos compartidos con las demás opciones del menú. El destino reportes.html permite acceder a los informes del inventario; esta opción solo debería recibir la clase activo cuando dicha página sea la vista abierta. -->
-                <a class="menu-enlace" href="../html/registros.html"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3"></path><rect x="8" y="2" width="8" height="5" rx="1.5"></rect><path d="M8 12h8M8 16h5"></path></svg></span> <span>Registros</span></a>
+                <a class="menu-enlace activo" href="./dashboard.html" aria-current="page"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-6h-4v6H4a1 1 0 0 1-1-1z"></path></svg></span><span>Panel principal</span></a>
+                <a class="menu-enlace" href="../html/productos.html"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></svg></span><span>Productos</span></a>
+                <a class="menu-enlace" href="../categorias.html"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4H10l2 2h7.5A1.5 1.5 0 0 1 21 7.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"></path><path d="M3 9h18"></path></svg></span><span>Categorías</span></a>
+                <a class="menu-enlace" href="../subcategorias.html"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></svg></span><span>Subcategorías</span></a>
+                <a class="menu-enlace" href="#actividad-reciente"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3"></path><rect x="8" y="2" width="8" height="5" rx="1.5"></rect><path d="M8 12h8M8 16h5"></path></svg></span><span>Registros</span></a>
             </nav>
         </div>
 
         <div class="menu-pie">
-            <p>Última vista</p>
-            <!--
-                Este acceso representa la salida segura del usuario desde el panel principal.
-                Al hacer clic, la aplicación debe devolver al visitante a la pantalla de login
-                y finalizar de forma apropiada la sesión activa para evitar que se mantenga un
-                estado autenticado en un navegador compartido o sin supervisión. Aunque este
-                enlace comparte la apariencia general de los demás elementos del menú lateral,
-                la clase menu-salir ayuda a distinguirlo visualmente como una acción de cierre
-                de sesión. El texto visible "Cerrar sesión" es claro y específico, además de ser
-                compatible con lectores de pantalla y otras tecnologías de asistencia que
-                interpretan el contenido de la interfaz. Este comentario documenta la intención
-                funcional del elemento para futuras modificaciones en la navegación, manteniendo
-                el contexto de seguridad y accesibilidad del proyecto.
-            -->
-            <a class="menu-enlace menu-salir" href="login.html"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path><path d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"></path></svg></span> <span>Cerrar sesión</span></a>
+            <p>Cuenta</p>
+            <a class="menu-enlace menu-salir" href="./login.html"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path><path d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"></path></svg></span><span>Cerrar sesión</span></a>
         </div>
     </aside>
 
     <button class="boton-menu" type="button" data-menu-toggle aria-controls="menuLateral" aria-expanded="false" aria-label="Abrir menú">
         <span></span><span></span><span></span>
     </button>
-                </li>
-            </ul>
-        </section>
+
+    <main class="dashboard-contenido">
+        <div class="dashboard-shell">
+            <header class="dashboard-topbar">
+                <div class="dashboard-heading">
+                    <p class="dashboard-eyebrow">PANEL DE CONTROL</p>
+                    <h1>Bienvenido a tu inventario</h1>
+                    <p class="dashboard-date" id="current-date">Fecha actual</p>
+                </div>
+
+                <div class="dashboard-actions">
+                    <label class="dashboard-search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg>
+                        <span class="visually-hidden">Buscar productos</span>
+                        <input type="search" id="product-search" placeholder="Buscar productos..." autocomplete="off">
+                    </label>
+
+                    <div class="notification-wrap">
+                        <button class="notification-button" id="notifications-toggle" type="button" aria-label="Mostrar notificaciones" aria-expanded="false" aria-controls="notifications-panel">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"></path></svg>
+                        </button>
+                        <div class="notification-panel" id="notifications-panel" hidden>
+                            <strong>Notificaciones</strong>
+                            <p>No hay notificaciones nuevas.</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-profile" aria-label="Perfil de usuario">
+                        <span class="profile-avatar" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20a7 7 0 0 1 14 0"></path></svg>
+                        </span>
+                        <span><strong>Usuario</strong><small>Inventario SENA</small></span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="dashboard-stats" aria-label="Resumen del inventario">
+                <article class="stat-card stat-card--green">
+                    <span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></svg></span>
+                    <div class="stat-content"><p>Total de productos</p><strong aria-label="Sin datos disponibles">—</strong><small>Datos no disponibles</small></div>
+                    <span class="stat-accent" aria-hidden="true"></span>
+                </article>
+                <article class="stat-card stat-card--blue">
+                    <span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4H10l2 2h7.5A1.5 1.5 0 0 1 21 7.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"></path><path d="M3 9h18"></path></svg></span>
+                    <div class="stat-content"><p>Total de categorías</p><strong aria-label="Sin datos disponibles">—</strong><small>Datos no disponibles</small></div>
+                    <span class="stat-accent" aria-hidden="true"></span>
+                </article>
+                <article class="stat-card stat-card--mint">
+                    <span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></svg></span>
+                    <div class="stat-content"><p>Total de subcategorías</p><strong aria-label="Sin datos disponibles">—</strong><small>Datos no disponibles</small></div>
+                    <span class="stat-accent" aria-hidden="true"></span>
+                </article>
+                <article class="stat-card stat-card--slate">
+                    <span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3"></path><rect x="8" y="2" width="8" height="5" rx="1.5"></rect><path d="M8 12h8M8 16h5"></path></svg></span>
+                    <div class="stat-content"><p>Total de registros</p><strong aria-label="Sin datos disponibles">—</strong><small>Datos no disponibles</small></div>
+                    <span class="stat-accent" aria-hidden="true"></span>
+                </article>
+            </section>
+
+            <section class="dashboard-charts" aria-label="Gráficas del inventario">
+                <article class="dashboard-card chart-card chart-card--wide">
+                    <header class="card-heading"><div><p class="card-eyebrow">TENDENCIA</p><h2>Productos registrados</h2></div><span class="data-badge">Sin datos</span></header>
+                    <div class="chart-empty">
+                        <span class="empty-visual" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M7 39V9M7 39h35"></path><path d="m13 31 8-8 7 5 12-15"></path><circle cx="40" cy="13" r="2"></circle></svg></span>
+                        <p>No hay datos para mostrar</p><small>La gráfica estará disponible cuando se conecte la fuente de inventario.</small>
+                    </div>
+                </article>
+                <article class="dashboard-card chart-card">
+                    <header class="card-heading"><div><p class="card-eyebrow">DISTRIBUCIÓN</p><h2>Por categorías</h2></div><span class="data-badge">Sin datos</span></header>
+                    <div class="chart-empty">
+                        <span class="empty-visual" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"></circle><path d="M24 8v16l13 9M24 24H8"></path></svg></span>
+                        <p>Distribución no disponible</p><small>Las categorías aparecerán aquí al cargar datos reales.</small>
+                    </div>
+                </article>
+                <article class="dashboard-card chart-card">
+                    <header class="card-heading"><div><p class="card-eyebrow">MOVIMIENTOS</p><h2>Actividad de registros</h2></div><span class="data-badge">Sin datos</span></header>
+                    <div class="chart-empty">
+                        <span class="empty-visual" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 12h30M8 24h30M8 36h18"></path><circle cx="34" cy="36" r="5"></circle><path d="m32 36 1.5 1.5L36.5 34"></path></svg></span>
+                        <p>No hay movimientos recientes</p><small>Los registros se mostrarán cuando estén disponibles.</small>
+                    </div>
+                </article>
+            </section>
+
+            <section class="dashboard-details" aria-label="Actividad y productos recientes">
+                <article class="dashboard-card activity-card" id="actividad-reciente">
+                    <header class="card-heading"><div><p class="card-eyebrow">ÚLTIMOS CAMBIOS</p><h2>Actividad reciente</h2></div><span class="heading-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span></header>
+                    <div class="activity-empty">
+                        <span class="activity-empty-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3"></path><rect x="8" y="2" width="8" height="5" rx="1.5"></rect><path d="M8 12h8M8 16h5"></path></svg></span>
+                        <strong>Aún no hay actividad</strong><p>Los nuevos productos, categorías y movimientos aparecerán aquí.</p>
+                    </div>
+                </article>
+
+                <article class="dashboard-card products-card">
+                    <header class="card-heading"><div><p class="card-eyebrow">INVENTARIO</p><h2>Productos recientes</h2></div><a class="text-link" href="./productos.html">Ver productos <span aria-hidden="true">→</span></a></header>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th scope="col">Nombre</th><th scope="col">Categoría</th><th scope="col">Cantidad</th><th scope="col">Estado</th><th scope="col">Fecha de registro</th></tr></thead>
+                            <tbody id="products-table-body">
+                                <tr class="table-empty-row" id="products-empty"><td colspan="5"><span class="table-empty-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></svg></span><strong>No hay productos para mostrar</strong><small>Los datos aparecerán aquí cuando estén conectados.</small></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="visually-hidden" id="search-status" aria-live="polite"></p>
+                </article>
+            </section>
+
+            <p class="dashboard-data-note">Las métricas y gráficas se actualizarán al conectar la fuente de datos del inventario.</p>
+        </div>
     </main>
 
+    <script src="../js/dashboard.js" defer></script>
     <script src="../js/menu.js" defer></script>
 </body>
 </html>

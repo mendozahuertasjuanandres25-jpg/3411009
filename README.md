@@ -2,7 +2,7 @@
 
 Plantilla web para la gestión de inventario, desarrollada como proyecto formativo de **ADSO**. La propuesta incluye una interfaz de acceso y registro, y contempla módulos para organizar productos y usuarios.
 
-> **Estado del proyecto:** prototipo estático en desarrollo. Las pantallas de inventario están previstas, pero todavía no están implementadas.
+> **Estado del proyecto:** prototipo estático en desarrollo. El dashboard presenta la estructura visual y estados vacíos; no hay servidor, base de datos ni fuente de datos conectada.
 
 ## Funcionalidades
 
@@ -10,7 +10,9 @@ Plantilla web para la gestión de inventario, desarrollada como proyecto formati
 
 - Pantalla de inicio de sesión.
 - Formulario de registro.
-- Panel principal con menú lateral fijo en escritorio y menú hamburguesa en móviles; este se cierra con clic fuera, Escape o al elegir una sección.
+- Panel principal responsive con tarjetas, gráficas, actividad reciente y tabla en estado vacío cuando no hay datos.
+- Menú lateral fijo en escritorio y hamburguesa en móviles; se cierra con clic fuera, Escape o al elegir una sección.
+- Fecha actual, búsqueda local de productos y panel de notificaciones sin datos.
 - Estilos propios con una paleta inspirada en los colores del SENA.
 
 ### Módulos previstos
@@ -25,9 +27,8 @@ Las operaciones CRUD de estos módulos son parte del alcance previsto; aún no e
 ## Tecnologías
 
 - **HTML5** para la estructura de las páginas.
-- **CSS3** para los estilos y la identidad visual.
-- **JavaScript** para abrir y cerrar el menú del panel principal.
-- **Bootstrap 5** para los componentes y el diseño adaptable de la pantalla de inicio de sesión.
+- **CSS3** en hojas separadas por página y componentes.
+- **JavaScript** para navegación, fecha, búsqueda, notificaciones e interacciones del prototipo.
 
 ## Requisitos
 
@@ -47,8 +48,11 @@ Abre `html/dashboard.html` para probar el menú hamburguesa del panel.
 ```text
 3411009/
 ├── css/
+│   ├── dashboard.css
 │   ├── estilos.css
-│   └── menu.css
+│   ├── login.css
+│   ├── menu.css
+│   └── registro.css
 ├── html/
 │   ├── categorias.html
 │   ├── dashboard.html
@@ -58,9 +62,16 @@ Abre `html/dashboard.html` para probar el menú hamburguesa del panel.
 │   ├── subcategorias.html
 │   └── usuarios.html
 ├── js/
-│   └── menu.js
+│   ├── dashboard.js
+│   ├── login.js
+│   ├── menu.js
+│   └── registro.js
 ├── img/
-│   └── images.png
+│   ├── apple.svg
+│   ├── gestion-inventario.svg
+│   ├── google.svg
+│   ├── images.png
+│   └── microsoft.svg
 └── README.md
 ```
 
@@ -69,8 +80,10 @@ Abre `html/dashboard.html` para probar el menú hamburguesa del panel.
 ## Alcance y limitaciones
 
 - Es una maqueta de interfaz; no cuenta con servidor, base de datos ni almacenamiento de información.
-- El inicio de sesión y el registro no autentican ni crean cuentas reales.
-- Los formularios no realizan operaciones persistentes. El acceso lleva a un panel de demostración; sus módulos todavía no están implementados.
+- El inicio de sesión sólo valida los campos en el navegador y redirige al panel de demostración; no autentica la identidad. El registro no crea cuentas reales.
+- El dashboard no consulta MySQL: muestra guiones y estados vacíos, sin inventar estadísticas.
+- OAuth y recuperación de contraseña están pendientes de configurar.
+- Las páginas de productos, categorías, subcategorías y usuarios aún no tienen contenido funcional. La opción «Registros» lleva a la actividad reciente del dashboard porque no existe una página independiente de registros.
 
 ## Próximos pasos
 
