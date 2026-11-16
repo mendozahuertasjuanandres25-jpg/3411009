@@ -12,6 +12,7 @@ Plantilla web para la gestión de inventario, desarrollada como proyecto formati
 - Formulario de registro.
 - Panel principal responsive con tarjetas, gráficas, actividad reciente y tabla en estado vacío cuando no hay datos.
 - Footer responsive del dashboard con navegación, versión y estado desconectado mientras no exista una fuente de datos.
+- Menú horizontal y footer con navegación en las páginas de inicio de sesión y registro.
 - Menú lateral fijo en escritorio y hamburguesa en móviles; se cierra con clic fuera, Escape o al elegir una sección.
 - Fecha actual, búsqueda local de productos y panel de notificaciones sin datos.
 - Estilos propios con una paleta inspirada en los colores del SENA.
@@ -50,6 +51,7 @@ Abre `html/dashboard.html` para probar el menú hamburguesa del panel.
 3411009/
 ├── css/
 │   ├── dashboard.css
+│   ├── auth-navigation.css
 │   ├── footer.css
 │   ├── estilos.css
 │   ├── login.css

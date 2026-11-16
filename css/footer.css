@@ -5,6 +5,13 @@
   box-shadow: 0 -5px 20px rgba(20, 43, 50, 0.025);
 }
 
+.login-page .dashboard-footer,
+.registro-pagina .dashboard-footer {
+  width: 100%;
+  margin: 1rem 0 0;
+  flex: 0 0 auto;
+}
+
 .footer-contenido {
   display: grid;
   width: min(100%, 1500px);

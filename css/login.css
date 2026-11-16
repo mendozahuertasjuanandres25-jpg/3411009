@@ -20,13 +20,14 @@
 }
 
 .login-page {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-width: 0;
   min-height: 100vh;
   min-height: 100svh;
-  place-items: center;
   margin: 0;
-  padding: clamp(0.75rem, 2.5vw, 2rem);
+  padding: 1rem clamp(0.75rem, 2.5vw, 2rem) 0;
   overflow-x: hidden;
   background:
     radial-gradient(ellipse at 5% 10%, rgba(57, 169, 0, 0.13), transparent 35%),
@@ -36,7 +37,10 @@
 .login-shell {
   display: grid;
   width: min(1380px, 100%);
-  min-height: min(850px, calc(100svh - 2rem));
+  min-height: min(850px, calc(100svh - 11rem));
+  flex: 1 0 auto;
+  align-self: stretch;
+  margin: 0 auto;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -703,7 +707,7 @@
 
 @media (max-width: 699px) {
   .login-page {
-    display: block;
+    align-items: stretch;
     padding: 0;
     background: #f5f8f6;
   }
@@ -711,8 +715,8 @@
   .login-shell {
     display: block;
     width: 100%;
-    min-height: 100vh;
-    min-height: 100svh;
+    min-height: 0;
+    flex: 1 0 auto;
     overflow: visible;
     border: 0;
     border-radius: 0;
@@ -725,9 +729,8 @@
   }
 
   .login-panel {
-    min-height: 100vh;
-    min-height: 100svh;
-    padding: max(1.4rem, env(safe-area-inset-top)) 1.25rem max(1.4rem, env(safe-area-inset-bottom));
+    min-height: 0;
+    padding: 1.4rem 1.25rem max(1.4rem, env(safe-area-inset-bottom));
   }
 
   .login-content {
@@ -736,6 +739,14 @@
 
   .login-brand {
     margin-bottom: 2rem;
+  }
+
+  .login-page .dashboard-footer {
+    margin-top: 0;
+  }
+
+  .auth-nav {
+    padding-top: max(0.8rem, env(safe-area-inset-top));
   }
 }
 

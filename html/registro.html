@@ -5,9 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#06251f">
     <title>Crear cuenta - Inventario SENA</title>
+    <link href="../css/auth-navigation.css" rel="stylesheet">
     <link href="../css/registro.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">
 </head>
 <body class="registro-pagina">
+    <header class="auth-nav">
+        <a class="auth-nav-brand" href="./dashboard.html" aria-label="Inventario SENA, panel principal">
+            <img src="../img/images.png" alt="" width="38" height="38">
+            <span>Inventario <strong>SENA</strong></span>
+        </a>
+        <nav class="auth-nav-links" aria-label="Navegación principal">
+            <a href="./dashboard.html">Panel principal</a>
+            <a href="./productos.html">Productos</a>
+            <a href="./categorias.html">Categorías</a>
+            <a href="./dashboard.html#actividad-reciente">Registros</a>
+            <a href="./login.html">Iniciar sesión</a>
+            <a class="auth-nav-cta" href="./registro.html" aria-current="page">Crear cuenta</a>
+        </nav>
+    </header>
+
     <main class="registro-card">
         <header class="registro-encabezado">
             <div class="registro-logo">
@@ -71,6 +88,31 @@
 
         <p class="registro-pie">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
     </main>
+    <footer class="dashboard-footer">
+        <div class="footer-contenido">
+            <section class="footer-marca" aria-label="Acerca de Inventario SENA">
+                <img src="../img/images.png" alt="Logo del SENA" width="44" height="44">
+                <div>
+                    <a class="footer-nombre" href="./dashboard.html">Inventario <strong>SENA</strong></a>
+                    <p>Sistema de gestión y control de inventarios</p>
+                </div>
+            </section>
+            <nav class="footer-navegacion" aria-label="Navegación del pie de página">
+                <a href="./dashboard.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-6h-4v6H4a1 1 0 0 1-1-1z"></path></svg><span>Panel principal</span></a>
+                <a href="./productos.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></svg><span>Productos</span></a>
+                <a href="./categorias.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4H10l2 2h7.5A1.5 1.5 0 0 1 21 7.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"></path><path d="M3 9h18"></path></svg><span>Categorías</span></a>
+                <a href="./dashboard.html#actividad-reciente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3"></path><rect x="8" y="2" width="8" height="5" rx="1.5"></rect><path d="M8 12h8M8 16h5"></path></svg><span>Registros</span></a>
+            </nav>
+            <section class="footer-informacion" aria-label="Información del sistema">
+                <div class="footer-meta">
+                    <span class="footer-version">Versión v1.0.0</span>
+                    <span class="footer-estado" role="status" aria-label="Estado del sistema: Desconectado, fuente de datos no conectada"><span class="footer-estado-indicador" aria-hidden="true"></span>Desconectado</span>
+                </div>
+                <p class="footer-copyright">© 2026 Inventario SENA. Todos los derechos reservados.</p>
+                <p class="footer-institucional">Desarrollado como proyecto de formación SENA</p>
+            </section>
+        </div>
+    </footer>
     <script src="../js/registro.js" defer></script>
 </body>
 </html>
