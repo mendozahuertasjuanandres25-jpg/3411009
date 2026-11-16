@@ -24,13 +24,16 @@
 }
 
 .dashboard-contenido {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   min-height: 100vh;
-  padding: 2rem 2rem 2.5rem 21rem;
+  padding: 2rem 2rem 0 21rem;
 }
 
 .dashboard-shell {
   width: min(100%, 1500px);
+  flex: 1 0 auto;
   margin: 0 auto;
 }
 
@@ -664,7 +667,7 @@
 
 @media (max-width: 767px) {
   .dashboard-contenido {
-    padding: 5rem 1rem 2rem;
+    padding: 5rem 1rem 0;
   }
 
   .dashboard-topbar {
