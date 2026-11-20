@@ -37,6 +37,13 @@
         </header>
 
         <form class="registro-formulario" id="registro-formulario">
+            <div class="registro-campo registro-campo--ancho">
+                <label for="foto-perfil">Foto de perfil (opcional)</label>
+                <input class="registro-foto-input" id="foto-perfil" name="foto-perfil" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="foto-perfil-ayuda">
+                <small class="registro-ayuda" id="foto-perfil-ayuda">JPG, PNG o WebP; máximo 1 MB. Se guarda solo en este navegador.</small>
+                <img class="registro-foto-preview" id="foto-perfil-preview" alt="Vista previa de la foto de perfil" hidden>
+            </div>
+
             <div class="registro-campo">
                 <label for="nombre">Nombre completo</label>
                 <div class="registro-control">
@@ -81,13 +88,6 @@
                     <input type="password" id="confirmar-clave" name="confirmar-clave" placeholder="Repite tu contraseña" minlength="6" autocomplete="new-password" aria-describedby="confirmar-ayuda" required>
                 </div>
                 <p class="registro-error" id="confirmar-ayuda" aria-live="polite" hidden></p>
-            </div>
-
-            <div class="registro-campo registro-campo--ancho">
-                <label for="foto-perfil">Foto de perfil (opcional)</label>
-                <input class="registro-foto-input" id="foto-perfil" name="foto-perfil" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="foto-perfil-ayuda">
-                <small class="registro-ayuda" id="foto-perfil-ayuda">JPG, PNG o WebP; máximo 1 MB. Se guarda solo en este navegador.</small>
-                <img class="registro-foto-preview" id="foto-perfil-preview" alt="Vista previa de la foto de perfil" hidden>
             </div>
 
             <p class="registro-error registro-estado" id="registro-estado" role="status" aria-live="polite" hidden></p>
