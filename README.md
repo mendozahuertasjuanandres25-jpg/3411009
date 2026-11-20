@@ -45,6 +45,24 @@ Solo necesitas un navegador web moderno. El proyecto no requiere instalación de
 También puedes abrir `html/registro.html` directamente para revisar el formulario de registro.
 Abre `html/dashboard.html` para probar el menú hamburguesa del panel.
 
+### Servir la página localmente con Ruby (opcional)
+
+Si tienes Ruby instalado, puedes iniciar un servidor web estático desde la carpeta raíz del proyecto:
+
+```bash
+ruby -run -e httpd . -p 8000
+```
+
+Luego abre `http://localhost:8000/html/login.html` en tu navegador. Para detener el servidor, presiona `Ctrl+C` en la terminal.
+
+En Ruby 3 o superior, si el comando indica que falta `webrick`, instala la gema una sola vez y vuelve a iniciar el servidor:
+
+```bash
+gem install webrick
+```
+
+Este servidor solo entrega los archivos estáticos; no agrega funcionalidades de backend, autenticación ni almacenamiento de datos.
+
 ## Estructura del proyecto
 
 ```text
