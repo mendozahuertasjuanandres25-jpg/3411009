@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f6f7">
+    <title>Productos - Inventario SENA</title>
+    <link href="../css/auth-navigation.css" rel="stylesheet">
+    <link href="../css/productos-demo.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">
+</head>
+<body class="productos-demo">
+    <header class="auth-nav">
+        <a class="auth-nav-brand" href="./dashboard.html" aria-label="Inventario SENA, panel principal">
+            <img src="../img/images.png" alt="" width="38" height="38">
+            <span>Inventario <strong>SENA</strong></span>
+        </a>
+        <nav class="auth-nav-links" aria-label="Navegación principal">
+            <a href="./dashboard.html">Panel principal</a>
+            <a href="./productos.html" aria-current="page">Productos</a>
+            <a href="./perfil.html">Mi perfil y compras</a>
+            <a href="./login.html" data-demo-logout>Cerrar sesión</a>
+        </nav>
+    </header>
+
+    <main class="catalogo-contenido">
+        <header class="catalogo-encabezado">
+            <p class="catalogo-etiqueta">CATÁLOGO DE PRUEBA</p>
+            <h1>Productos</h1>
+            <p>Registra compras ficticias para probar el historial de tu perfil. No se realizan pagos ni se modifica el inventario.</p>
+        </header>
+
+        <section class="catalogo-grid" aria-label="Productos de demostración">
+            <article class="producto-demo">
+                <span class="producto-icono" aria-hidden="true">⌨</span>
+                <p class="producto-categoria">Accesorios</p>
+                <h2>Teclado inalámbrico</h2>
+                <p class="producto-descripcion">Teclado compacto para estación de trabajo.</p>
+                <div class="producto-pie">
+                    <strong>$85.000</strong>
+                    <button class="producto-comprar" type="button" data-buy-product data-product-id="teclado-inalambrico" data-product-name="Teclado inalámbrico" data-product-price="85000">Comprar de prueba</button>
+                </div>
+            </article>
+            <article class="producto-demo">
+                <span class="producto-icono" aria-hidden="true">◉</span>
+                <p class="producto-categoria">Accesorios</p>
+                <h2>Mouse óptico</h2>
+                <p class="producto-descripcion">Mouse con conexión USB para uso diario.</p>
+                <div class="producto-pie">
+                    <strong>$42.000</strong>
+                    <button class="producto-comprar" type="button" data-buy-product data-product-id="mouse-optico" data-product-name="Mouse óptico" data-product-price="42000">Comprar de prueba</button>
+                </div>
+            </article>
+            <article class="producto-demo">
+                <span class="producto-icono" aria-hidden="true">▰</span>
+                <p class="producto-categoria">Almacenamiento</p>
+                <h2>Unidad SSD 480 GB</h2>
+                <p class="producto-descripcion">Unidad de almacenamiento de estado sólido.</p>
+                <div class="producto-pie">
+                    <strong>$165.000</strong>
+                    <button class="producto-comprar" type="button" data-buy-product data-product-id="ssd-480gb" data-product-name="Unidad SSD 480 GB" data-product-price="165000">Comprar de prueba</button>
+                </div>
+            </article>
+            <article class="producto-demo">
+                <span class="producto-icono" aria-hidden="true">▣</span>
+                <p class="producto-categoria">Pantallas</p>
+                <h2>Monitor de 24 pulgadas</h2>
+                <p class="producto-descripcion">Monitor de escritorio para tareas de oficina.</p>
+                <div class="producto-pie">
+                    <strong>$620.000</strong>
+                    <button class="producto-comprar" type="button" data-buy-product data-product-id="monitor-24" data-product-name="Monitor de 24 pulgadas" data-product-price="620000">Comprar de prueba</button>
+                </div>
+            </article>
+        </section>
+
+        <div class="catalogo-resultado" aria-live="polite">
+            <p id="compra-estado" role="status">Inicia sesión para guardar compras en tu perfil.</p>
+            <a href="./login.html" id="compra-login">Ir a iniciar sesión</a>
+            <a href="./perfil.html">Ver historial de compras</a>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-contenido">
+            <section class="footer-marca" aria-label="Acerca de Inventario SENA">
+                <img src="../img/images.png" alt="Logo del SENA" width="44" height="44">
+                <div>
+                    <a class="footer-nombre" href="./dashboard.html">Inventario <strong>SENA</strong></a>
+                    <p>Sistema de gestión y control de inventarios</p>
+                </div>
+            </section>
+            <nav class="footer-navegacion" aria-label="Navegación del pie de página">
+                <a href="./dashboard.html"><span>Panel principal</span></a>
+                <a href="./productos.html"><span>Productos</span></a>
+                <a href="./perfil.html"><span>Mi perfil</span></a>
+            </nav>
+            <section class="footer-informacion" aria-label="Información del sistema">
+                <div class="footer-meta">
+                    <span class="footer-version">Versión v1.0.0</span>
+                    <span class="footer-estado" role="status" aria-label="Modo de demostración"><span class="footer-estado-indicador" aria-hidden="true"></span>Demo local</span>
+                </div>
+                <p class="footer-copyright">© 2026 Inventario SENA. Todos los derechos reservados.</p>
+                <p class="footer-institucional">Desarrollado como proyecto de formación SENA</p>
+            </section>
+        </div>
+    </footer>
+    <script src="../js/demo-store.js" defer></script>
+    <script src="../js/productos-demo.js" defer></script>
+</body>
+</html>

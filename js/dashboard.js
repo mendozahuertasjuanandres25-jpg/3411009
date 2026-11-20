@@ -5,6 +5,10 @@ const productsEmpty = document.getElementById("products-empty");
 const searchStatus = document.getElementById("search-status");
 const notificationsToggle = document.getElementById("notifications-toggle");
 const notificationsPanel = document.getElementById("notifications-panel");
+const currentUserName = document.getElementById("current-user-name");
+const currentUserEmail = document.getElementById("current-user-email");
+const currentUserPhoto = document.getElementById("current-user-photo");
+const currentUserFallback = document.getElementById("current-user-fallback");
 
 if (
   !(currentDate instanceof HTMLElement) ||
@@ -13,9 +17,23 @@ if (
   !(productsEmpty instanceof HTMLTableRowElement) ||
   !(searchStatus instanceof HTMLElement) ||
   !(notificationsToggle instanceof HTMLButtonElement) ||
-  !(notificationsPanel instanceof HTMLElement)
+  !(notificationsPanel instanceof HTMLElement) ||
+  !(currentUserName instanceof HTMLElement) ||
+  !(currentUserEmail instanceof HTMLElement) ||
+  !(currentUserPhoto instanceof HTMLImageElement) ||
+  !(currentUserFallback instanceof HTMLElement)
 ) {
   throw new Error("No se encontraron los elementos necesarios para el dashboard.");
+}
+
+const activeEmail = window.InventoryDemoStore.getActiveEmail();
+const activeProfile = activeEmail ? window.InventoryDemoStore.getProfile(activeEmail) : null;
+currentUserName.textContent = activeProfile ? activeProfile.name : activeEmail ? activeEmail.split("@")[0] : "Invitado";
+currentUserEmail.textContent = activeEmail || "Inicia sesión para ver tu perfil";
+if (activeProfile && activeProfile.photo) {
+  currentUserPhoto.src = activeProfile.photo;
+  currentUserPhoto.hidden = false;
+  currentUserFallback.hidden = true;
 }
 
 currentDate.textContent = new Intl.DateTimeFormat("es-CO", {

@@ -9,7 +9,10 @@ Plantilla web para la gestión de inventario, desarrollada como proyecto formati
 ### Disponibles en el prototipo
 
 - Pantalla de inicio de sesión.
-- Formulario de registro.
+- Formulario de registro con carga opcional de foto de perfil.
+- Panel que muestra el nombre, correo y foto del usuario de la sesión de demostración.
+- Edición del nombre y la foto desde la página «Mi perfil».
+- Catálogo de productos de prueba con compras ficticias e historial por perfil.
 - Panel principal responsive con tarjetas, gráficas, actividad reciente y tabla en estado vacío cuando no hay datos.
 - Footer responsive del dashboard con navegación, versión y estado desconectado mientras no exista una fuente de datos.
 - Menú horizontal y footer con navegación en las páginas de inicio de sesión y registro.
@@ -35,6 +38,7 @@ Las operaciones CRUD de estos módulos son parte del alcance previsto; aún no e
 ## Requisitos
 
 Solo necesitas un navegador web moderno. El proyecto no requiere instalación de dependencias ni un servidor para abrir las páginas estáticas.
+Para que la sesión y los perfiles se compartan entre páginas, es recomendable abrir el proyecto desde el servidor local de Ruby descrito abajo.
 
 ## Cómo ejecutar
 
@@ -74,19 +78,25 @@ Este servidor solo entrega los archivos estáticos; no agrega funcionalidades de
 │   ├── estilos.css
 │   ├── login.css
 │   ├── menu.css
+│   ├── perfil.css
+│   ├── productos-demo.css
 │   └── registro.css
 ├── html/
 │   ├── categorias.html
 │   ├── dashboard.html
 │   ├── login.html
 │   ├── productos.html
+│   ├── perfil.html
 │   ├── registro.html
 │   ├── subcategorias.html
 │   └── usuarios.html
 ├── js/
 │   ├── dashboard.js
+│   ├── demo-store.js
 │   ├── login.js
 │   ├── menu.js
+│   ├── perfil.js
+│   ├── productos-demo.js
 │   └── registro.js
 ├── img/
 │   ├── apple.svg
@@ -97,20 +107,21 @@ Este servidor solo entrega los archivos estáticos; no agrega funcionalidades de
 └── README.md
 ```
 
-> Los archivos de `productos`, `categorias`, `subcategorias` y `usuarios` están creados como estructura inicial, pero actualmente están vacíos.
+> Las páginas de categorías, subcategorías y usuarios siguen como estructura inicial. El catálogo de productos contiene datos ficticios únicamente para probar el historial de compras.
 
 ## Alcance y limitaciones
 
-- Es una maqueta de interfaz; no cuenta con servidor, base de datos ni almacenamiento de información.
-- El inicio de sesión sólo valida los campos en el navegador y redirige al panel de demostración; no autentica la identidad. El registro no crea cuentas reales.
+- Es una maqueta de interfaz; no cuenta con backend ni base de datos. El inicio de sesión es demostrativo: no verifica contraseñas y no autentica la identidad.
+- Los perfiles, fotos, sesión y compras de prueba se guardan en el almacenamiento local del navegador; no se comparten entre dispositivos ni usuarios del navegador.
+- El catálogo y las compras son ficticios: no se realizan pagos ni se modifica el inventario.
 - El dashboard no consulta MySQL: muestra guiones y estados vacíos, sin inventar estadísticas.
 - OAuth y recuperación de contraseña están pendientes de configurar.
-- Las páginas de productos, categorías, subcategorías y usuarios aún no tienen contenido funcional. La opción «Registros» lleva a la actividad reciente del dashboard porque no existe una página independiente de registros.
+- Las páginas de categorías, subcategorías y usuarios aún no tienen contenido funcional. La opción «Registros» lleva a la actividad reciente del dashboard porque no existe una página independiente de registros.
 
 ## Próximos pasos
 
-1. Completar el panel principal y la navegación entre módulos.
-2. Diseñar las vistas de productos, categorías, subcategorías y usuarios.
+1. Completar la navegación entre módulos.
+2. Diseñar las vistas de categorías, subcategorías y usuarios.
 3. Implementar operaciones CRUD y validaciones.
 4. Conectar la aplicación con un servicio de autenticación y una base de datos.
 5. Incorporar pruebas de navegación y formularios.

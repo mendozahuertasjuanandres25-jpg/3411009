@@ -31,12 +31,13 @@
                 <a class="menu-enlace" href="../categorias.html"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4H10l2 2h7.5A1.5 1.5 0 0 1 21 7.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"></path><path d="M3 9h18"></path></svg></span><span>Categorías</span></a>
                 <a class="menu-enlace" href="../subcategorias.html"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></svg></span><span>Subcategorías</span></a>
                 <a class="menu-enlace" href="#actividad-reciente"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3"></path><rect x="8" y="2" width="8" height="5" rx="1.5"></rect><path d="M8 12h8M8 16h5"></path></svg></span><span>Registros</span></a>
+                    <a class="menu-enlace" href="./perfil.html"><span aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20a7 7 0 0 1 14 0"></path></svg></span><span>Mi perfil</span></a>
             </nav>
         </div>
 
         <div class="menu-pie">
             <p>Cuenta</p>
-            <a class="menu-enlace menu-salir" href="./login.html"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path><path d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"></path></svg></span><span>Cerrar sesión</span></a>
+                <a class="menu-enlace menu-salir" href="./login.html" data-demo-logout><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path><path d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"></path></svg></span><span>Cerrar sesión</span></a>
         </div>
     </aside>
 
@@ -70,12 +71,13 @@
                         </div>
                     </div>
 
-                    <div class="dashboard-profile" aria-label="Perfil de usuario">
+                    <a class="dashboard-profile" href="./perfil.html" aria-label="Ver y editar mi perfil">
                         <span class="profile-avatar" aria-hidden="true">
-                            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20a7 7 0 0 1 14 0"></path></svg>
+                            <svg id="current-user-fallback" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20a7 7 0 0 1 14 0"></path></svg>
+                            <img id="current-user-photo" alt="" hidden>
                         </span>
-                        <span><strong>Usuario</strong><small>Inventario SENA</small></span>
-                    </div>
+                        <span><strong id="current-user-name">Invitado</strong><small id="current-user-email">Inicia sesión</small></span>
+                    </a>
                 </div>
             </header>
 
@@ -196,6 +198,7 @@
         </footer>
     </main>
 
+    <script src="../js/demo-store.js" defer></script>
     <script src="../js/dashboard.js" defer></script>
     <script src="../js/menu.js" defer></script>
 </body>

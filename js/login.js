@@ -37,7 +37,24 @@ loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   if (loginForm.reportValidity()) {
-    window.location.assign("dashboard.html");
+    const emailInput = document.getElementById("correo");
+    if (!(emailInput instanceof HTMLInputElement)) {
+      throw new Error("No se encontró el campo de correo del inicio de sesión.");
+    }
+    try {
+      const email = emailInput.value.trim();
+      if (!window.InventoryDemoStore.getProfile(email)) {
+        window.InventoryDemoStore.saveProfile({
+          name: email.split("@")[0],
+          email,
+          photo: null,
+        });
+      }
+      window.InventoryDemoStore.setActiveEmail(email);
+      window.location.assign("dashboard.html");
+    } catch (error) {
+      showPendingMessage(`No se pudo iniciar la demostración. ${error.message}`);
+    }
   }
 });
 loginSubmit.disabled = false;

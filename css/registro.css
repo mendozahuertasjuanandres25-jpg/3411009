@@ -119,6 +119,10 @@
   min-width: 0;
 }
 
+.registro-campo--ancho {
+  grid-column: 1 / -1;
+}
+
 .registro-campo label {
   display: block;
   margin-bottom: 0.45rem;
@@ -189,6 +193,41 @@
 
 .registro-error[hidden] {
   display: none;
+}
+
+.registro-foto-input {
+  display: block;
+  width: 100%;
+  padding: 0.65rem;
+  border: 1px solid var(--registro-borde);
+  border-radius: 12px;
+  color: var(--registro-tinta);
+  background: #fff;
+  font: inherit;
+  font-size: 0.82rem;
+}
+
+.registro-ayuda {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--registro-secundario);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.registro-foto-preview {
+  width: 76px;
+  height: 76px;
+  margin-top: 0.75rem;
+  border: 2px solid #e6eee5;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.registro-estado {
+  grid-column: 1 / -1;
+  margin: 0;
+  line-height: 1.45;
 }
 
 .registro-boton {

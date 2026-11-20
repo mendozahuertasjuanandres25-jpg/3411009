@@ -36,7 +36,7 @@
             <p class="registro-descripcion">Ingresa tus datos para comenzar a gestionar tu inventario.</p>
         </header>
 
-        <form class="registro-formulario" id="registro-formulario" action="dashboard.html" method="get">
+        <form class="registro-formulario" id="registro-formulario">
             <div class="registro-campo">
                 <label for="nombre">Nombre completo</label>
                 <div class="registro-control">
@@ -83,6 +83,14 @@
                 <p class="registro-error" id="confirmar-ayuda" aria-live="polite" hidden></p>
             </div>
 
+            <div class="registro-campo registro-campo--ancho">
+                <label for="foto-perfil">Foto de perfil (opcional)</label>
+                <input class="registro-foto-input" id="foto-perfil" name="foto-perfil" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="foto-perfil-ayuda">
+                <small class="registro-ayuda" id="foto-perfil-ayuda">JPG, PNG o WebP; máximo 1 MB. Se guarda solo en este navegador.</small>
+                <img class="registro-foto-preview" id="foto-perfil-preview" alt="Vista previa de la foto de perfil" hidden>
+            </div>
+
+            <p class="registro-error registro-estado" id="registro-estado" role="status" aria-live="polite" hidden></p>
             <button class="registro-boton" type="submit">Registrarme</button>
         </form>
 
@@ -113,6 +121,7 @@
             </section>
         </div>
     </footer>
+    <script src="../js/demo-store.js" defer></script>
     <script src="../js/registro.js" defer></script>
 </body>
 </html>

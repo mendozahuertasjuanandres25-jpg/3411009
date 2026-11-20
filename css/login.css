@@ -318,6 +318,13 @@
   line-height: 1.55;
 }
 
+.login-demo-note {
+  margin: -1rem 0 1.1rem;
+  color: #78878a;
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
 .login-form {
   display: grid;
   gap: 1.05rem;

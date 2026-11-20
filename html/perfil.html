@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f6f7">
+    <title>Mi perfil - Inventario SENA</title>
+    <link href="../css/auth-navigation.css" rel="stylesheet">
+    <link href="../css/perfil.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">
+</head>
+<body class="perfil-pagina">
+    <header class="auth-nav">
+        <a class="auth-nav-brand" href="./dashboard.html" aria-label="Inventario SENA, panel principal">
+            <img src="../img/images.png" alt="" width="38" height="38">
+            <span>Inventario <strong>SENA</strong></span>
+        </a>
+        <nav class="auth-nav-links" aria-label="Navegación principal">
+            <a href="./dashboard.html">Panel principal</a>
+            <a href="./productos.html">Productos</a>
+            <a href="./perfil.html" aria-current="page">Mi perfil</a>
+            <a href="./login.html" data-demo-logout>Cerrar sesión</a>
+        </nav>
+    </header>
+
+    <main class="perfil-contenido">
+        <header class="perfil-encabezado">
+            <p class="perfil-etiqueta">CUENTA DE DEMOSTRACIÓN</p>
+            <h1>Mi perfil</h1>
+            <p>Actualiza tu nombre y foto, y consulta las compras de demostración.</p>
+        </header>
+
+        <section class="perfil-tarjeta" aria-labelledby="perfil-formulario-titulo">
+            <div class="perfil-tarjeta-encabezado">
+                <div class="perfil-avatar" aria-hidden="true">
+                    <svg id="perfil-avatar-predeterminado" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20a7 7 0 0 1 14 0"></path></svg>
+                    <img id="perfil-avatar-foto" alt="" hidden>
+                </div>
+                <div>
+                    <h2 id="perfil-formulario-titulo">Información personal</h2>
+                    <p>La información se guarda únicamente en este navegador.</p>
+                </div>
+            </div>
+
+            <form id="perfil-formulario" class="perfil-formulario">
+                <div class="perfil-campo">
+                    <label for="perfil-nombre">Nombre</label>
+                    <input id="perfil-nombre" name="nombre" type="text" autocomplete="name" maxlength="80" required>
+                </div>
+                <div class="perfil-campo">
+                    <label for="perfil-correo">Correo</label>
+                    <input id="perfil-correo" name="correo" type="email" readonly>
+                </div>
+                <div class="perfil-campo perfil-campo--ancho">
+                    <label for="perfil-foto">Cambiar foto de perfil</label>
+                    <input id="perfil-foto" name="foto" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="perfil-foto-ayuda">
+                    <small id="perfil-foto-ayuda">JPG, PNG o WebP; máximo 1 MB.</small>
+                </div>
+                <div class="perfil-acciones">
+                    <button class="perfil-boton perfil-boton--secundario" id="perfil-quitar-foto" type="button">Quitar foto</button>
+                    <button class="perfil-boton" type="submit">Guardar cambios</button>
+                </div>
+                <p class="perfil-mensaje" id="perfil-mensaje" role="status" aria-live="polite" hidden></p>
+            </form>
+        </section>
+
+        <section class="perfil-tarjeta historial-tarjeta" aria-labelledby="historial-titulo">
+            <div class="historial-encabezado">
+                <div>
+                    <p class="perfil-etiqueta">ACTIVIDAD</p>
+                    <h2 id="historial-titulo">Historial de compras</h2>
+                </div>
+                <a class="perfil-enlace" href="./productos.html">Ver productos</a>
+            </div>
+            <p class="historial-nota">Compras de prueba; no se realizan pagos ni se modifica el inventario.</p>
+            <div class="historial-tabla-contenedor">
+                <table class="historial-tabla">
+                    <thead>
+                        <tr><th scope="col">Producto</th><th scope="col">Fecha</th><th scope="col">Valor</th></tr>
+                    </thead>
+                    <tbody id="historial-compras"></tbody>
+                </table>
+            </div>
+            <p class="historial-vacio" id="historial-vacio">Todavía no tienes compras de demostración.</p>
+        </section>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-contenido">
+            <section class="footer-marca" aria-label="Acerca de Inventario SENA">
+                <img src="../img/images.png" alt="Logo del SENA" width="44" height="44">
+                <div>
+                    <a class="footer-nombre" href="./dashboard.html">Inventario <strong>SENA</strong></a>
+                    <p>Sistema de gestión y control de inventarios</p>
+                </div>
+            </section>
+            <nav class="footer-navegacion" aria-label="Navegación del pie de página">
+                <a href="./dashboard.html"><span>Panel principal</span></a>
+                <a href="./productos.html"><span>Productos</span></a>
+                <a href="./perfil.html"><span>Mi perfil</span></a>
+            </nav>
+            <section class="footer-informacion" aria-label="Información del sistema">
+                <div class="footer-meta">
+                    <span class="footer-version">Versión v1.0.0</span>
+                    <span class="footer-estado" role="status" aria-label="Modo de demostración"><span class="footer-estado-indicador" aria-hidden="true"></span>Demo local</span>
+                </div>
+                <p class="footer-copyright">© 2026 Inventario SENA. Todos los derechos reservados.</p>
+                <p class="footer-institucional">Desarrollado como proyecto de formación SENA</p>
+            </section>
+        </div>
+    </footer>
+    <script src="../js/demo-store.js" defer></script>
+    <script src="../js/perfil.js" defer></script>
+</body>
+</html>
