@@ -9,6 +9,7 @@ const currentUserName = document.getElementById("current-user-name");
 const currentUserEmail = document.getElementById("current-user-email");
 const currentUserPhoto = document.getElementById("current-user-photo");
 const currentUserFallback = document.getElementById("current-user-fallback");
+const welcomeHeading = document.getElementById("dashboard-welcome");
 
 if (
   !(currentDate instanceof HTMLElement) ||
@@ -21,20 +22,38 @@ if (
   !(currentUserName instanceof HTMLElement) ||
   !(currentUserEmail instanceof HTMLElement) ||
   !(currentUserPhoto instanceof HTMLImageElement) ||
-  !(currentUserFallback instanceof HTMLElement)
+  !(currentUserFallback instanceof HTMLElement) ||
+  !(welcomeHeading instanceof HTMLElement)
 ) {
   throw new Error("No se encontraron los elementos necesarios para el dashboard.");
 }
 
-const activeEmail = window.InventoryDemoStore.getActiveEmail();
-const activeProfile = activeEmail ? window.InventoryDemoStore.getProfile(activeEmail) : null;
-currentUserName.textContent = activeProfile ? activeProfile.name : activeEmail ? activeEmail.split("@")[0] : "Invitado";
-currentUserEmail.textContent = activeEmail || "Inicia sesión para ver tu perfil";
-if (activeProfile && activeProfile.photo) {
-  currentUserPhoto.src = activeProfile.photo;
-  currentUserPhoto.hidden = false;
-  currentUserFallback.hidden = true;
-}
+const loadDashboardUser = async () => {
+  try {
+    const { user } = await window.InventoryAuthClient.request("/api/me");
+    welcomeHeading.textContent = `Bienvenido, ${user.full_name}`;
+    currentUserName.textContent = user.full_name;
+    currentUserEmail.textContent = user.email;
+    if (user.photo_url) {
+      currentUserPhoto.src = `${user.photo_url}?v=${Date.now()}`;
+      currentUserPhoto.hidden = false;
+      currentUserFallback.hidden = true;
+    }
+  } catch (error) {
+    if (error.status === 401) {
+      window.location.replace("./login.html");
+      return;
+    }
+    currentUserName.textContent = "Perfil no disponible";
+    currentUserEmail.textContent = error.message;
+  }
+};
+
+currentUserPhoto.addEventListener("error", () => {
+  currentUserPhoto.hidden = true;
+  currentUserFallback.hidden = false;
+});
+loadDashboardUser();
 
 currentDate.textContent = new Intl.DateTimeFormat("es-CO", {
   weekday: "long",

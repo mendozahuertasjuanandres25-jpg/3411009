@@ -227,7 +227,23 @@
 .registro-estado {
   grid-column: 1 / -1;
   margin: 0;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid #f0c8c4;
+  border-radius: 10px;
+  color: #8e2b23;
+  background: #fff5f4;
+  font-size: 0.82rem;
   line-height: 1.45;
+}
+
+.registro-estado[data-state="success"] {
+  border-color: #d5e9cf;
+  color: #245c20;
+  background: #f3fbef;
+}
+
+.registro-estado[hidden] {
+  display: none;
 }
 
 .registro-boton {

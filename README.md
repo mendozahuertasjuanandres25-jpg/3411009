@@ -2,17 +2,18 @@
 
 Plantilla web para la gestión de inventario, desarrollada como proyecto formativo de **ADSO**. La propuesta incluye una interfaz de acceso y registro, y contempla módulos para organizar productos y usuarios.
 
-> **Estado del proyecto:** prototipo estático en desarrollo. El dashboard presenta la estructura visual y estados vacíos; no hay servidor, base de datos ni fuente de datos conectada.
+> **Estado del proyecto:** frontend estático servido por un backend Ruby/Sinatra. Registro, inicio de sesión, sesiones, perfiles y compras de demostración usan MySQL. Las métricas del inventario siguen sin conectarse a una fuente de datos.
 
 ## Funcionalidades
 
 ### Disponibles en el prototipo
 
-- Pantalla de inicio de sesión.
-- Formulario de registro con carga opcional de foto de perfil.
-- Panel que muestra el nombre, correo y foto del usuario de la sesión de demostración.
-- Edición del nombre y la foto desde la página «Mi perfil».
-- Catálogo de productos de prueba con compras ficticias e historial por perfil.
+- Registro con validación de correo único, contraseña confirmada y foto de perfil opcional.
+- Inicio de sesión que valida la contraseña almacenada con BCrypt; el correo y la contraseña incorrectos producen un error claro.
+- Confirmación al crear la cuenta con nombre, foto y correo prellenado en el login.
+- Sesiones revocables guardadas en MySQL y cookie `HttpOnly`, `SameSite=Strict`; las páginas privadas se controlan desde el servidor.
+- Dashboard personalizado con nombre y foto; el perfil permite actualizar estos datos.
+- Catálogo de productos de prueba con compras ficticias e historial separado por usuario.
 - Panel principal responsive con tarjetas, gráficas, actividad reciente y tabla en estado vacío cuando no hay datos.
 - Footer responsive del dashboard con navegación, versión y estado desconectado mientras no exista una fuente de datos.
 - Menú horizontal y footer con navegación en las páginas de inicio de sesión y registro.
@@ -33,39 +34,37 @@ Las operaciones CRUD de estos módulos son parte del alcance previsto; aún no e
 
 - **HTML5** para la estructura de las páginas.
 - **CSS3** en hojas separadas por página y componentes.
-- **JavaScript** para navegación, fecha, búsqueda, notificaciones e interacciones del prototipo.
+- **JavaScript** para validación de formularios e interacción con la API.
+- **Ruby con Sinatra** para rutas, API, sesiones y protección de páginas.
+- **MySQL** para usuarios, sesiones y compras de demostración; **BCrypt** para hashes de contraseña.
 
 ## Requisitos
 
-Solo necesitas un navegador web moderno. El proyecto no requiere instalación de dependencias ni un servidor para abrir las páginas estáticas.
-Para que la sesión y los perfiles se compartan entre páginas, es recomendable abrir el proyecto desde el servidor local de Ruby descrito abajo.
+Ruby 3.2 o superior, Bundler, MySQL 8 o superior y un navegador moderno. El sitio debe abrirse a través del backend; abrir los archivos HTML directamente no ejecuta la autenticación.
 
 ## Cómo ejecutar
 
-1. Descarga o clona este repositorio.
-2. Abre la carpeta del proyecto.
-3. Abre `html/login.html` en tu navegador.
-
-También puedes abrir `html/registro.html` directamente para revisar el formulario de registro.
-Abre `html/dashboard.html` para probar el menú hamburguesa del panel.
-
-### Servir la página localmente con Ruby (opcional)
-
-Si tienes Ruby instalado, puedes iniciar un servidor web estático desde la carpeta raíz del proyecto:
+1. Crea la base de datos y las tablas ejecutando [`db/schema.sql`](./db/schema.sql) desde MySQL Workbench o el cliente MySQL.
+2. Crea un usuario MySQL dedicado y concédele `SELECT`, `INSERT`, `UPDATE` y `DELETE` sobre `inventario_sena.*`. No uses la cuenta `root` para la aplicación.
+3. Desde PowerShell, en la carpeta raíz, configura las variables del proceso:
 
 ```bash
-ruby -run -e httpd . -p 8000
+$env:DB_HOST = "127.0.0.1"
+$env:DB_PORT = "3306"
+$env:DB_NAME = "inventario_sena"
+$env:DB_USER = "inventario_app"
+$env:DB_PASSWORD = Read-Host "Contraseña MySQL de inventario_app"
+$env:SESSION_SECRET = ruby -rsecurerandom -e "print SecureRandom.hex(64)"
 ```
 
-Luego abre `http://localhost:8000/html/login.html` en tu navegador. Para detener el servidor, presiona `Ctrl+C` en la terminal.
-
-En Ruby 3 o superior, si el comando indica que falta `webrick`, instala la gema una sola vez y vuelve a iniciar el servidor:
+4. Instala las dependencias y arranca Sinatra:
 
 ```bash
-gem install webrick
+bundle install
+bundle exec rackup -o 127.0.0.1 -p 4567
 ```
 
-Este servidor solo entrega los archivos estáticos; no agrega funcionalidades de backend, autenticación ni almacenamiento de datos.
+5. Abre `http://127.0.0.1:4567/`. No publiques `DB_PASSWORD` ni `SESSION_SECRET` en Git. En producción, sirve el sitio exclusivamente sobre HTTPS para habilitar la cookie segura.
 
 ## Estructura del proyecto
 
@@ -91,8 +90,8 @@ Este servidor solo entrega los archivos estáticos; no agrega funcionalidades de
 │   ├── subcategorias.html
 │   └── usuarios.html
 ├── js/
+│   ├── auth-client.js
 │   ├── dashboard.js
-│   ├── demo-store.js
 │   ├── login.js
 │   ├── menu.js
 │   ├── perfil.js
@@ -104,6 +103,11 @@ Este servidor solo entrega los archivos estáticos; no agrega funcionalidades de
 │   ├── google.svg
 │   ├── images.png
 │   └── microsoft.svg
+├── db/
+│   └── schema.sql
+├── app.rb
+├── config.ru
+├── Gemfile
 └── README.md
 ```
 
@@ -111,17 +115,16 @@ Este servidor solo entrega los archivos estáticos; no agrega funcionalidades de
 
 ## Alcance y limitaciones
 
-- Es una maqueta de interfaz; no cuenta con backend ni base de datos. El inicio de sesión es demostrativo: no verifica contraseñas y no autentica la identidad.
-- Los perfiles, fotos, sesión y compras de prueba se guardan en el almacenamiento local del navegador; no se comparten entre dispositivos ni usuarios del navegador.
-- El catálogo y las compras son ficticios: no se realizan pagos ni se modifica el inventario.
+- La autenticación y los datos de cuenta usan el servidor Ruby/MySQL; las compras del catálogo siguen siendo ficticias y no realizan pagos ni modifican existencias.
+- Las fotos se guardan en `storage/profile_photos`, fuera de las rutas públicas, y se entregan solo a la sesión autenticada.
+- La aplicación no incluye todavía verificación de correo, recuperación de contraseña ni limitación de intentos de inicio de sesión; no la expongas directamente a Internet sin controles adicionales.
 - El dashboard no consulta MySQL: muestra guiones y estados vacíos, sin inventar estadísticas.
 - OAuth y recuperación de contraseña están pendientes de configurar.
 - Las páginas de categorías, subcategorías y usuarios aún no tienen contenido funcional. La opción «Registros» lleva a la actividad reciente del dashboard porque no existe una página independiente de registros.
 
 ## Próximos pasos
 
-1. Completar la navegación entre módulos.
+1. Conectar las métricas del dashboard y el CRUD de inventario a MySQL.
 2. Diseñar las vistas de categorías, subcategorías y usuarios.
-3. Implementar operaciones CRUD y validaciones.
-4. Conectar la aplicación con un servicio de autenticación y una base de datos.
-5. Incorporar pruebas de navegación y formularios.
+3. Incorporar verificación de correo, recuperación de contraseña y limitación de intentos.
+4. Añadir pruebas de integración con una instancia de MySQL.

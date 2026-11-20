@@ -17,16 +17,17 @@
         </a>
         <nav class="auth-nav-links" aria-label="Navegación principal">
             <a href="./dashboard.html">Panel principal</a>
+            <a href="./productos.html">Productos</a>
             <a href="./perfil.html" aria-current="page">Mi perfil</a>
-            <a href="./login.html" data-demo-logout>Cerrar sesión</a>
+            <a href="./login.html" data-auth-logout>Cerrar sesión</a>
         </nav>
     </header>
 
     <main class="perfil-contenido">
         <header class="perfil-encabezado">
-            <p class="perfil-etiqueta">CUENTA DE DEMOSTRACIÓN</p>
+            <p class="perfil-etiqueta">TU CUENTA</p>
             <h1>Mi perfil</h1>
-            <p>Actualiza tu nombre y foto, y consulta las compras de demostración.</p>
+            <p>Actualiza tu información personal y consulta las compras de demostración.</p>
         </header>
 
         <section class="perfil-tarjeta" aria-labelledby="perfil-formulario-titulo">
@@ -37,14 +38,14 @@
                 </div>
                 <div>
                     <h2 id="perfil-formulario-titulo">Información personal</h2>
-                    <p>La información se guarda únicamente en este navegador.</p>
+                    <p>La información se guarda en tu cuenta del sistema.</p>
                 </div>
             </div>
 
             <form id="perfil-formulario" class="perfil-formulario">
                 <div class="perfil-campo">
                     <label for="perfil-nombre">Nombre</label>
-                    <input id="perfil-nombre" name="nombre" type="text" autocomplete="name" maxlength="80" required>
+                    <input id="perfil-nombre" name="nombre" type="text" autocomplete="name" maxlength="120" required>
                 </div>
                 <div class="perfil-campo">
                     <label for="perfil-correo">Correo</label>
@@ -71,7 +72,7 @@
                 </div>
                 <a class="perfil-enlace" href="./productos.html">Ver productos</a>
             </div>
-            <p class="historial-nota">Compras de prueba; no se realizan pagos ni se modifica el inventario.</p>
+            <p class="historial-nota">Compras de demostración; no se realizan pagos ni se modifica el inventario.</p>
             <div class="historial-tabla-contenedor">
                 <table class="historial-tabla">
                     <thead>
@@ -101,14 +102,14 @@
             <section class="footer-informacion" aria-label="Información del sistema">
                 <div class="footer-meta">
                     <span class="footer-version">Versión v1.0.0</span>
-                    <span class="footer-estado" role="status" aria-label="Modo de demostración"><span class="footer-estado-indicador" aria-hidden="true"></span>Demo local</span>
+                    <span class="footer-estado" role="status" aria-label="Conectado al sistema"><span class="footer-estado-indicador" aria-hidden="true"></span>Sesión activa</span>
                 </div>
                 <p class="footer-copyright">© 2026 Inventario SENA. Todos los derechos reservados.</p>
                 <p class="footer-institucional">Desarrollado como proyecto de formación SENA</p>
             </section>
         </div>
     </footer>
-    <script src="../js/demo-store.js" defer></script>
+    <script src="../js/auth-client.js" defer></script>
     <script src="../js/perfil.js" defer></script>
 </body>
 </html>

@@ -37,7 +37,7 @@
 
         <div class="menu-pie">
             <p>Cuenta</p>
-                <a class="menu-enlace menu-salir" href="./login.html" data-demo-logout><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path><path d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"></path></svg></span><span>Cerrar sesión</span></a>
+                <a class="menu-enlace menu-salir" href="./login.html" data-auth-logout><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path><path d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"></path></svg></span><span>Cerrar sesión</span></a>
         </div>
     </aside>
 
@@ -50,7 +50,7 @@
             <header class="dashboard-topbar">
                 <div class="dashboard-heading">
                     <p class="dashboard-eyebrow">PANEL DE CONTROL</p>
-                    <h1>Bienvenido a tu inventario</h1>
+                    <h1 id="dashboard-welcome">Bienvenido a tu inventario</h1>
                     <p class="dashboard-date" id="current-date">Fecha actual</p>
                 </div>
 
@@ -198,7 +198,7 @@
         </footer>
     </main>
 
-    <script src="../js/demo-store.js" defer></script>
+    <script src="../js/auth-client.js" defer></script>
     <script src="../js/dashboard.js" defer></script>
     <script src="../js/menu.js" defer></script>
 </body>
