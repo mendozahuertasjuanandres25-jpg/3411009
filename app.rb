@@ -8,12 +8,17 @@ require "securerandom"
 require "sinatra/base"
 require "time"
 
+DEMO_MODE = ENV.fetch("DEMO_MODE", "true").downcase != "false"
 SESSION_SECRET = ENV.fetch("SESSION_SECRET", "")
-abort "Define SESSION_SECRET con al menos 64 caracteres aleatorios." if SESSION_SECRET.bytesize < 64
-abort "Define DB_USER antes de iniciar el servidor." if ENV.fetch("DB_USER", "").empty?
+SESSION_SECRET = SecureRandom.hex(64) if SESSION_SECRET.bytesize < 64
 
 class InventarioApp < Sinatra::Base
   APP_ROOT = File.expand_path(__dir__)
+  DEMO_MUTEX = Mutex.new
+  DEMO_USERS = {}
+  DEMO_SESSIONS = {}
+  DEMO_PURCHASES = Hash.new { |hash, key| hash[key] = [] }
+  DEMO_NEXT_USER_ID = { value: 1 }
   PHOTO_DIRECTORY = File.join(APP_ROOT, "storage", "profile_photos")
   MAX_REQUEST_BYTES = 1_200_000
   MAX_PHOTO_BYTES = 1_048_576
@@ -110,6 +115,19 @@ class InventarioApp < Sinatra::Base
     end
 
     def find_user_by_id(user_id)
+      if DEMO_MODE
+        return nil unless session[:auth_token]
+        session_record = DEMO_MUTEX.synchronize do
+          DEMO_SESSIONS[Digest::SHA256.hexdigest(session[:auth_token])]
+        end
+        return nil unless session_record && session_record[:user_id] == user_id && session_record[:expires_at] > Time.now.utc
+
+        DEMO_MUTEX.synchronize do
+          user = DEMO_USERS[user_id]
+          next nil unless user
+          user.merge(csrf_token: session_record[:csrf_token])
+        end
+      else
       with_database do |connection|
         execute(
           connection,
@@ -120,10 +138,42 @@ class InventarioApp < Sinatra::Base
           user_id
         ).first
       end
+      end
     end
 
     def authenticated_user
       return @authenticated_user if defined?(@authenticated_user)
+
+      if DEMO_MODE
+        token = session[:auth_token]
+        if token.is_a?(String) && token.match?(/\A[0-9a-f]{64}\z/)
+          @authenticated_user = find_user_by_id(session[:user_id])
+          return @authenticated_user if @authenticated_user
+        end
+
+        token = SecureRandom.hex(32)
+        csrf_token = SecureRandom.hex(32)
+        DEMO_MUTEX.synchronize do
+          DEMO_USERS[0] ||= {
+            id: 0,
+            full_name: "Usuario de demostración",
+            email: "demo@sena.test",
+            password_digest: DUMMY_PASSWORD_HASH,
+            photo_filename: nil,
+          }
+          DEMO_SESSIONS[Digest::SHA256.hexdigest(token)] = {
+            user_id: 0,
+            csrf_token: csrf_token,
+            expires_at: Time.now.utc + REMEMBERED_SESSION_SECONDS,
+          }
+        end
+        session.clear
+        session[:auth_token] = token
+        session[:user_id] = 0
+        session[:csrf_token] = csrf_token
+        @authenticated_user = DEMO_USERS[0].merge(csrf_token: csrf_token)
+        return @authenticated_user
+      end
 
       token = session[:auth_token]
       unless token.is_a?(String) && token.match?(/\A[0-9a-f]{64}\z/)
@@ -200,12 +250,18 @@ class InventarioApp < Sinatra::Base
     end
 
     def find_authenticated_user_by_email(email)
+      if DEMO_MODE
+        DEMO_MUTEX.synchronize do
+          DEMO_USERS.values.find { |user| user[:email] == email }
+        end
+      else
       with_database do |connection|
         execute(
           connection,
           "SELECT id, full_name, email, password_digest, photo_filename FROM users WHERE email = ? LIMIT 1",
           email
         ).first
+      end
       end
     end
   end
@@ -281,15 +337,33 @@ class InventarioApp < Sinatra::Base
     begin
       photo_filename = save_profile_photo(params["profile_photo"])
       password_digest = BCrypt::Password.create(fields[:password]).to_s
-      with_database do |connection|
-        execute(
-          connection,
-          "INSERT INTO users (full_name, email, password_digest, photo_filename) VALUES (?, ?, ?, ?)",
-          fields[:name],
-          fields[:email],
-          password_digest,
-          photo_filename
-        )
+      if DEMO_MODE
+        DEMO_MUTEX.synchronize do
+          if DEMO_USERS.values.any? { |user| user[:email] == fields[:email] }
+            raise InvalidInput, "Ese correo ya tiene una cuenta. Inicia sesión o usa otro correo."
+          end
+
+          user_id = DEMO_NEXT_USER_ID[:value]
+          DEMO_NEXT_USER_ID[:value] += 1
+          DEMO_USERS[user_id] = {
+            id: user_id,
+            full_name: fields[:name],
+            email: fields[:email],
+            password_digest: password_digest,
+            photo_filename: photo_filename,
+          }
+        end
+      else
+        with_database do |connection|
+          execute(
+            connection,
+            "INSERT INTO users (full_name, email, password_digest, photo_filename) VALUES (?, ?, ?, ?)",
+            fields[:name],
+            fields[:email],
+            password_digest,
+            photo_filename
+          )
+        end
       end
     rescue InvalidInput => error
       delete_profile_photo(photo_filename)
@@ -327,16 +401,27 @@ class InventarioApp < Sinatra::Base
     csrf_token = SecureRandom.hex(32)
     expires_at = (Time.now.utc + expires_in).strftime("%Y-%m-%d %H:%M:%S")
 
-    with_database do |connection|
-      execute(connection, "DELETE FROM auth_sessions WHERE expires_at <= UTC_TIMESTAMP()")
-      execute(
-        connection,
-        "INSERT INTO auth_sessions (token_digest, user_id, csrf_token, expires_at) VALUES (?, ?, ?, ?)",
-        Digest::SHA256.hexdigest(token),
-        user[:id],
-        csrf_token,
-        expires_at
-      )
+    if DEMO_MODE
+      DEMO_MUTEX.synchronize do
+        DEMO_SESSIONS.delete_if { |_digest, record| record[:expires_at] <= Time.now.utc }
+        DEMO_SESSIONS[Digest::SHA256.hexdigest(token)] = {
+          user_id: user[:id],
+          csrf_token: csrf_token,
+          expires_at: Time.now.utc + expires_in,
+        }
+      end
+    else
+      with_database do |connection|
+        execute(connection, "DELETE FROM auth_sessions WHERE expires_at <= UTC_TIMESTAMP()")
+        execute(
+          connection,
+          "INSERT INTO auth_sessions (token_digest, user_id, csrf_token, expires_at) VALUES (?, ?, ?, ?)",
+          Digest::SHA256.hexdigest(token),
+          user[:id],
+          csrf_token,
+          expires_at
+        )
+      end
     end
     session.clear
     session.options[:expire_after] = expires_in
@@ -351,8 +436,12 @@ class InventarioApp < Sinatra::Base
     user = require_authenticated_user!
     verify_csrf!
     digest = Digest::SHA256.hexdigest(session[:auth_token])
-    with_database do |connection|
-      execute(connection, "DELETE FROM auth_sessions WHERE token_digest = ? AND user_id = ?", digest, user[:id])
+    if DEMO_MODE
+      DEMO_MUTEX.synchronize { DEMO_SESSIONS.delete(digest) }
+    else
+      with_database do |connection|
+        execute(connection, "DELETE FROM auth_sessions WHERE token_digest = ? AND user_id = ?", digest, user[:id])
+      end
     end
     session.clear
     json_response(message: "Sesión cerrada.")
@@ -375,14 +464,21 @@ class InventarioApp < Sinatra::Base
         photo_filename = nil
       end
 
-      with_database do |connection|
-        execute(
-          connection,
-          "UPDATE users SET full_name = ?, photo_filename = ? WHERE id = ?",
-          name,
-          photo_filename,
-          user[:id]
-        )
+      if DEMO_MODE
+        DEMO_MUTEX.synchronize do
+          DEMO_USERS[user[:id]][:full_name] = name
+          DEMO_USERS[user[:id]][:photo_filename] = photo_filename
+        end
+      else
+        with_database do |connection|
+          execute(
+            connection,
+            "UPDATE users SET full_name = ?, photo_filename = ? WHERE id = ?",
+            name,
+            photo_filename,
+            user[:id]
+          )
+        end
       end
     rescue InvalidInput => error
       delete_profile_photo(new_photo_filename)
@@ -406,13 +502,19 @@ class InventarioApp < Sinatra::Base
 
   get "/api/purchases" do
     user = require_authenticated_user!
-    purchases = with_database do |connection|
-      execute(
-        connection,
-        "SELECT product_id, product_name, price, purchased_at FROM demo_purchases " \
-        "WHERE user_id = ? ORDER BY purchased_at DESC, id DESC",
-        user[:id]
-      ).to_a
+    purchases = if DEMO_MODE
+      DEMO_MUTEX.synchronize do
+        DEMO_PURCHASES[user[:id]].map(&:dup)
+      end
+    else
+      with_database do |connection|
+        execute(
+          connection,
+          "SELECT product_id, product_name, price, purchased_at FROM demo_purchases " \
+          "WHERE user_id = ? ORDER BY purchased_at DESC, id DESC",
+          user[:id]
+        ).to_a
+      end
     end
     purchases = purchases.map do |purchase|
       {
@@ -431,15 +533,26 @@ class InventarioApp < Sinatra::Base
     product = DEMO_PRODUCTS[params["product_id"].to_s]
     api_error(422, "El producto seleccionado no está disponible.") unless product
 
-    with_database do |connection|
-      execute(
-        connection,
-        "INSERT INTO demo_purchases (user_id, product_id, product_name, price) VALUES (?, ?, ?, ?)",
-        user[:id],
-        params["product_id"],
-        product[:name],
-        product[:price]
-      )
+    if DEMO_MODE
+      DEMO_MUTEX.synchronize do
+        DEMO_PURCHASES[user[:id]].unshift(
+          product_id: params["product_id"],
+          product_name: product[:name],
+          price: product[:price],
+          purchased_at: Time.now.utc
+        )
+      end
+    else
+      with_database do |connection|
+        execute(
+          connection,
+          "INSERT INTO demo_purchases (user_id, product_id, product_name, price) VALUES (?, ?, ?, ?)",
+          user[:id],
+          params["product_id"],
+          product[:name],
+          product[:price]
+        )
+      end
     end
     json_response(message: "Compra de demostración registrada.")
   end
