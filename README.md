@@ -44,6 +44,16 @@ Ruby 3.2 o superior, Bundler, MySQL 8 o superior y un navegador moderno. El siti
 
 ## Cómo ejecutar
 
+### Sin Ruby ni MySQL
+
+Desde PowerShell, en la carpeta raíz, inicia el sitio estático:
+
+```bash
+python -m http.server 4567 --bind 127.0.0.1
+```
+
+Abre `http://127.0.0.1:4567/html/login.html`. El registro, el inicio de sesión, el perfil y el historial de compras funcionan de forma local en el navegador mediante `localStorage`; no se necesita Ruby, MySQL ni instalar servicios adicionales.
+
 1. Crea la base de datos y las tablas ejecutando [`db/schema.sql`](./db/schema.sql) desde MySQL Workbench o el cliente MySQL.
 2. Crea un usuario MySQL dedicado y concédele `SELECT`, `INSERT`, `UPDATE` y `DELETE` sobre `inventario_sena.*`. No uses la cuenta `root` para la aplicación.
 3. Desde PowerShell, en la carpeta raíz, configura las variables del proceso:

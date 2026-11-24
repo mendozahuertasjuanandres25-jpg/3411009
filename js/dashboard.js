@@ -22,7 +22,7 @@ if (
   !(currentUserName instanceof HTMLElement) ||
   !(currentUserEmail instanceof HTMLElement) ||
   !(currentUserPhoto instanceof HTMLImageElement) ||
-  !(currentUserFallback instanceof HTMLElement) ||
+  !(currentUserFallback instanceof SVGElement) ||
   !(welcomeHeading instanceof HTMLElement)
 ) {
   throw new Error("No se encontraron los elementos necesarios para el dashboard.");
