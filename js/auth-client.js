@@ -165,6 +165,10 @@
         "mouse-optico": ["Mouse óptico", 42000],
         "ssd-480gb": ["Unidad SSD 480 GB", 165000],
         "monitor-24": ["Monitor de 24 pulgadas", 620000],
+        "samsung-galaxy-s24": ["Samsung Galaxy S24", 3990000],
+        "iphone-15-pro": ["iPhone 15 Pro", 5580000],
+        "xiaomi-redmi-note-13": ["Redmi Note 13 Pro", 1350000],
+        "motorola-edge-50": ["Motorola Edge 50", 2200000],
       };
       if (!catalog[product]) {
         throw new Error("El producto seleccionado no está disponible.");

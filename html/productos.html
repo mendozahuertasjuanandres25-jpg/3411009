@@ -10,65 +10,131 @@
     <link href="../css/footer.css" rel="stylesheet">
 </head>
 <body class="productos-demo">
-    <header class="auth-nav">
-        <a class="auth-nav-brand" href="./dashboard.html" aria-label="Inventario SENA, panel principal">
-            <img src="../img/images.png" alt="" width="38" height="38">
-            <span>Inventario <strong>SENA</strong></span>
-        </a>
-        <nav class="auth-nav-links" aria-label="Navegación principal">
-            <a href="./dashboard.html">Panel principal</a>
-            <a href="./productos.html" aria-current="page">Productos</a>
-            <a href="./perfil.html">Mi perfil y compras</a>
-            <a href="./login.html" data-auth-logout>Cerrar sesión</a>
+    <header class="tienda-header">
+        <div class="tienda-header-principal">
+            <a class="tienda-marca" href="./dashboard.html" aria-label="Tecno SENA, panel principal">
+                <img src="../img/images.png" alt="Logo oficial del SENA" width="48" height="48">
+                <span class="tienda-marca-texto"><strong>Tecno SENA</strong><small>Aprendices SENA</small></span>
+            </a>
+
+            <label class="tienda-buscador">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg>
+                <span class="visualmente-oculto">Buscar productos</span>
+                <input id="buscador-productos" type="search" placeholder="Buscar celulares, marcas y accesorios" autocomplete="off">
+                <button type="button" aria-label="Buscar">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg>
+                </button>
+            </label>
+
+            <nav class="tienda-acciones" aria-label="Acciones de usuario">
+                <a class="tienda-login" href="./login.html" data-auth-logout>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20a7 7 0 0 1 14 0"></path></svg>
+                    <span><small>Hola, bienvenido</small><strong>Iniciar sesión</strong></span>
+                </a>
+                <a class="tienda-carrito" href="./perfil.html" aria-label="Ver compras">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L20.5 8H6"></path><circle cx="10" cy="19" r="1.2"></circle><circle cx="17" cy="19" r="1.2"></circle></svg>
+                    <span id="contador-carrito">0</span>
+                </a>
+            </nav>
+        </div>
+
+        <nav class="tienda-navegacion" aria-label="Navegación principal y categorías">
+            <button class="tienda-categorias" type="button" data-category-filter="todos">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                Todas las categorías
+            </button>
+            <a href="./dashboard.html">Inicio</a>
+            <button type="button" data-category-filter="celulares">Celulares</button>
+            <button type="button" data-category-filter="accesorios">Accesorios</button>
+            <a href="./perfil.html">Mis compras</a>
+            <a href="./dashboard.html">Ofertas</a>
         </nav>
     </header>
 
     <main class="catalogo-contenido">
-        <header class="catalogo-encabezado">
-            <p class="catalogo-etiqueta">CATÁLOGO DE PRUEBA</p>
-            <h1>Productos</h1>
-            <p>Registra compras ficticias para probar el historial de tu perfil. No se realizan pagos ni se modifica el inventario.</p>
+        <section class="hero-tienda" aria-labelledby="hero-titulo">
+            <div class="hero-contenido">
+                <p class="hero-etiqueta">OFERTA ESPECIAL SENA</p>
+                <h1 id="hero-titulo">Tecnología que mueve<br><span>tu mundo</span></h1>
+                <p>Celulares seleccionados con garantía, calidad y los mejores beneficios.</p>
+                <a href="#productos-tienda">Ver ofertas <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="hero-telefonos" aria-hidden="true">
+                <div class="hero-phone hero-phone-uno"><span></span></div>
+                <div class="hero-phone hero-phone-dos"><span></span></div>
+                <div class="hero-circulo"></div>
+            </div>
+        </section>
+
+        <div class="beneficios-tienda" aria-label="Beneficios de compra">
+            <div><span aria-hidden="true">✓</span><p><strong>Compra segura</strong><small>Protegemos tu información</small></p></div>
+            <div><span aria-hidden="true">↗</span><p><strong>Envíos disponibles</strong><small>Consultá cobertura</small></p></div>
+            <div><span aria-hidden="true">◇</span><p><strong>Garantía incluida</strong><small>Calidad respaldada</small></p></div>
+        </div>
+
+        <header class="catalogo-encabezado" id="productos-tienda">
+            <div>
+                <p class="catalogo-etiqueta">SELECCIÓN DESTACADA</p>
+                <h2>Los mejores celulares</h2>
+            </div>
+            <p class="catalogo-ayuda">Las compras son demostrativas y no realizan pagos reales.</p>
         </header>
 
         <section class="catalogo-grid" aria-label="Productos de demostración">
-            <article class="producto-demo">
-                <span class="producto-icono" aria-hidden="true">⌨</span>
-                <p class="producto-categoria">Accesorios</p>
-                <h2>Teclado inalámbrico</h2>
-                <p class="producto-descripcion">Teclado compacto para estación de trabajo.</p>
+            <article class="producto-demo" data-category="celulares" data-search="samsung galaxy s24 ultra 256gb">
+                <div class="producto-media producto-media--azul">
+                    <span class="producto-descuento">-15%</span>
+                    <div class="phone-render phone-render--azul" aria-label="Samsung Galaxy S24"><span class="phone-camara"></span></div>
+                </div>
+                <p class="producto-categoria">Samsung · Smartphone</p>
+                <h3>Samsung Galaxy S24</h3>
+                <p class="producto-descripcion">256 GB · 8 GB RAM · Cámara profesional</p>
+                <p class="producto-disponibilidad"><span></span>Disponible</p>
                 <div class="producto-pie">
-                    <strong>$85.000</strong>
-                    <button class="producto-comprar" type="button" data-buy-product data-product-id="teclado-inalambrico" data-product-name="Teclado inalámbrico" data-product-price="85000">Comprar de prueba</button>
+                    <div><small>$4.800.000</small><strong>$3.990.000</strong></div>
+                    <button class="producto-comprar" type="button" data-buy-product data-product-id="samsung-galaxy-s24" data-product-name="Samsung Galaxy S24" data-product-price="3990000">Comprar</button>
                 </div>
             </article>
-            <article class="producto-demo">
-                <span class="producto-icono" aria-hidden="true">◉</span>
-                <p class="producto-categoria">Accesorios</p>
-                <h2>Mouse óptico</h2>
-                <p class="producto-descripcion">Mouse con conexión USB para uso diario.</p>
+            <article class="producto-demo" data-category="celulares" data-search="iphone 15 pro 256gb apple">
+                <div class="producto-media producto-media--negro">
+                    <span class="producto-descuento">-10%</span>
+                    <div class="phone-render phone-render--negro" aria-label="iPhone 15 Pro"><span class="phone-camara"></span></div>
+                </div>
+                <p class="producto-categoria">Apple · Smartphone</p>
+                <h3>iPhone 15 Pro</h3>
+                <p class="producto-descripcion">256 GB · Titanio natural · Chip A17 Pro</p>
+                <p class="producto-disponibilidad"><span></span>Disponible</p>
                 <div class="producto-pie">
-                    <strong>$42.000</strong>
-                    <button class="producto-comprar" type="button" data-buy-product data-product-id="mouse-optico" data-product-name="Mouse óptico" data-product-price="42000">Comprar de prueba</button>
+                    <div><small>$6.200.000</small><strong>$5.580.000</strong></div>
+                    <button class="producto-comprar" type="button" data-buy-product data-product-id="iphone-15-pro" data-product-name="iPhone 15 Pro" data-product-price="5580000">Comprar</button>
                 </div>
             </article>
-            <article class="producto-demo">
-                <span class="producto-icono" aria-hidden="true">▰</span>
-                <p class="producto-categoria">Almacenamiento</p>
-                <h2>Unidad SSD 480 GB</h2>
-                <p class="producto-descripcion">Unidad de almacenamiento de estado sólido.</p>
+            <article class="producto-demo" data-category="celulares" data-search="xiaomi redmi note 13 pro 128gb">
+                <div class="producto-media producto-media--menta">
+                    <span class="producto-descuento">-18%</span>
+                    <div class="phone-render phone-render--menta" aria-label="Xiaomi Redmi Note 13"><span class="phone-camara"></span></div>
+                </div>
+                <p class="producto-categoria">Xiaomi · Smartphone</p>
+                <h3>Redmi Note 13 Pro</h3>
+                <p class="producto-descripcion">128 GB · 8 GB RAM · Pantalla AMOLED</p>
+                <p class="producto-disponibilidad"><span></span>Últimas unidades</p>
                 <div class="producto-pie">
-                    <strong>$165.000</strong>
-                    <button class="producto-comprar" type="button" data-buy-product data-product-id="ssd-480gb" data-product-name="Unidad SSD 480 GB" data-product-price="165000">Comprar de prueba</button>
+                    <div><small>$1.650.000</small><strong>$1.350.000</strong></div>
+                    <button class="producto-comprar" type="button" data-buy-product data-product-id="xiaomi-redmi-note-13" data-product-name="Redmi Note 13 Pro" data-product-price="1350000">Comprar</button>
                 </div>
             </article>
-            <article class="producto-demo">
-                <span class="producto-icono" aria-hidden="true">▣</span>
-                <p class="producto-categoria">Pantallas</p>
-                <h2>Monitor de 24 pulgadas</h2>
-                <p class="producto-descripcion">Monitor de escritorio para tareas de oficina.</p>
+            <article class="producto-demo" data-category="celulares" data-search="motorola edge 50 fusion 256gb">
+                <div class="producto-media producto-media--rosa">
+                    <span class="producto-descuento">-12%</span>
+                    <div class="phone-render phone-render--rosa" aria-label="Motorola Edge 50"><span class="phone-camara"></span></div>
+                </div>
+                <p class="producto-categoria">Motorola · Smartphone</p>
+                <h3>Motorola Edge 50</h3>
+                <p class="producto-descripcion">256 GB · 12 GB RAM · Diseño curvo</p>
+                <p class="producto-disponibilidad"><span></span>Disponible</p>
                 <div class="producto-pie">
-                    <strong>$620.000</strong>
-                    <button class="producto-comprar" type="button" data-buy-product data-product-id="monitor-24" data-product-name="Monitor de 24 pulgadas" data-product-price="620000">Comprar de prueba</button>
+                    <div><small>$2.500.000</small><strong>$2.200.000</strong></div>
+                    <button class="producto-comprar" type="button" data-buy-product data-product-id="motorola-edge-50" data-product-name="Motorola Edge 50" data-product-price="2200000">Comprar</button>
                 </div>
             </article>
         </section>
